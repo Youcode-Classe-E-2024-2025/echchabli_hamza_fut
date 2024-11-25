@@ -1,0 +1,22 @@
+html , body {
+
+    height: 100%;
+
+    width: 100%;
+
+}
+
+#boardContainer {
+
+    background: url('../resource/field-bg.svg') no-repeat center center; 
+
+    background-size: cover; 
+    margin-top: 50px;
+
+    width: 50%;
+
+    aspect-ratio: 4.5 / 3;
+
+
+
+} 
