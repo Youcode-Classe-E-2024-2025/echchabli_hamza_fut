@@ -8,24 +8,79 @@
     <link rel="stylesheet" href="css/style.css">
     
 </head>
-<body class=>
-    <main class="h-full w-full ">
-
-        <section id="boardContainer" class="bg-black m-auto     ">
-           
-
+<body >
+    <main class="h-full w-full flex">
+        <section class="bg-orange-200" style="width: 20%;">text</section>
+        
+       
+        <section id="boardContainer" class="bg-black m-auto flex flex-col">
+            <div id="attack" class="attack w-full flex justify-evenly items-end flex-1">
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">10</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">11</div>
+            </div>
+            <div id="middle" class="middle w-full flex justify-evenly items-end flex-1">
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">6</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">7</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">8</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">9</div>
+            </div>
+            <div id="defence" class="defence w-full flex justify-evenly items-end flex-1">
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">2</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">3</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">4</div>
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">5</div>
+            </div>
+            <div id="GK" class="GK w-full flex justify-evenly items-end flex-1">
+                <div class="bg-red-200 h-[70px] w-[35px] flex items-center justify-center">1</div>
+            </div>
         </section>
-
-
-
-
-
-
+    
+        
+        <section class="bg-lime-300" style="width: 20%;">
+            <p class="text-xl font-bold text-center text-gray-800 py-2 cursor-pointer mb-2" onclick="changeLayout(532)">532</p>
+            <p class="text-xl font-bold text-center text-gray-800 py-2 cursor-pointer mb-2" onclick="changeLayout(343)">343</p>
+            <p class="text-xl font-bold text-center text-gray-800 py-2 cursor-pointer mb-2" onclick="changeLayout(334)">334</p>
+            <p class="text-xl font-bold text-center text-gray-800 py-2 cursor-pointer mb-2" onclick="changeLayout(433)">433</p>
+        </section>
     </main>
-  
-
-
+    
+    <script>
+        function changeLayout(number) {
+            
+            const numStr = number.toString();
+        
+            
+            const defenceCount = parseInt(numStr.charAt(0));
+            const middleCount = parseInt(numStr.charAt(1)); 
+            const attackCount = parseInt(numStr.charAt(2)); 
+        
+            
+            const attackDivs = Array.from(document.getElementById('attack').children); 
+            const middleDivs = Array.from(document.getElementById('middle').children); 
+            const defenceDivs = Array.from(document.getElementById('defence').children);  
+            console.log();
+            
+           
+            const allDivs = [...defenceDivs, ...middleDivs, ...attackDivs];
+        
+            
+            const newDefenceDivs = allDivs.slice(0, defenceCount); 
+            const newMiddleDivs = allDivs.slice(defenceCount, defenceCount + middleCount); 
+            const newAttackDivs = allDivs.slice(defenceCount + middleCount, defenceCount + middleCount + attackCount); 
+        
+          
+            document.getElementById('defence').innerHTML = '';
+            document.getElementById('middle').innerHTML = '';
+            document.getElementById('attack').innerHTML = '';
+        
+           
+            newDefenceDivs.forEach(div => document.getElementById('defence').appendChild(div));
+            newMiddleDivs.forEach(div => document.getElementById('middle').appendChild(div));
+            newAttackDivs.forEach(div => document.getElementById('attack').appendChild(div));
+        }
+        </script>
+    
    
-   
+   <script src="./js/script.js"></script>
 </body>
 </html>
