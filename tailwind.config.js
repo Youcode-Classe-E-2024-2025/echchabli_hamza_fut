@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     './index.html',      
+    './card.html',      
     './js/script.js',   
   ],
   theme: {

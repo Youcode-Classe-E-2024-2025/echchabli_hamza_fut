@@ -1,0 +1,70 @@
+
+.wrapper{
+    background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    width: 12%;
+    aspect-ratio: 3.2/5.2;
+
+}
+
+.ratingText{
+    font-size: 10px;
+    color: #FFD700;
+    font-weight: 400;
+    margin-bottom: -3px;
+    
+   
+
+}
+#firstHR{
+    height: 1px;
+    background-color:  #3D341B;
+}
+
+#secondHR{
+    width: 4px;
+    background-color:  #ffffff;
+    height: 90%;
+}
+/* Style for vertical divider (hr) */
+.vertical-hr {
+    border: none;
+    width: 1px; /* Width of the vertical line */
+    background-color: #FFD700; /* Gold color */
+    height: 100%; /* Full height */
+    margin: 0 20px; /* Add horizontal spacing between the two columns */
+  }
+  
+
+.stat{
+    font-size: 8px;
+    color: #FFD700;
+    margin-top: 5%;
+}
+
+.textSIZE{
+    font-size: 9px;
+    color: #FFD700;
+    font-weight: 360;
+    
+   
+
+}
+.nameSIZE{
+    font-size: 14px;
+    color: #FFD700;
+    
+   
+
+}
+
+/* .mbFlag{
+    margin-bottom: -5%;
+} */
+
+.flexGapStat{
+    column-gap:10px ;
+}
+
