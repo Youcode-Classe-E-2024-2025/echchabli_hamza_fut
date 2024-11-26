@@ -56,6 +56,8 @@
               <option value="433">4-3-3</option>
               
             </select>
+
+            <button type="button" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]" id="addBtn">Add player</button>
             
         </section>
         <div class="  absolute left-[10%] top-[5%] w-4/6 rounded-sm m-auto p-7 bg-slate-900 h-[300px] overflow-y-auto flex  flex-wrap gap-12 hidden scrollbar-thumb-gray-500 scrollbar-track-gray-700 scrollbar-thin" id="rightPlayers">
@@ -64,7 +66,131 @@
 
         </div>
 
-        
+        <div id="playerFormContainer" class="absolute hidden  left-[10%] w-3/4 bg-black p-6 rounded-lg text-[#ABA6A6]">
+          <form id="playerForm" class="grid grid-cols-2 gap-4">
+              <!-- Row 1 -->
+              <input 
+                  type="text" 
+                  placeholder="Name" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+              <input 
+                  type="url" 
+                  placeholder="Photo URL" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Row 2 -->
+              <select 
+                  class="bg-[#3D341B] text-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+                  <option value="" disabled selected>Select Position</option>
+                  <option value="RW">RW</option>
+                  <option value="LW">LW</option>
+                  <option value="CB">CB</option>
+                  <option value="GK">GK</option>
+                  <option value="RB">RB</option>
+                  <option value="LB">LB</option>
+                  <option value="CM">CM</option>
+                  <option value="CDM">CDM</option>
+                  <option value="ST">ST</option>
+              </select>
+              <input 
+                  type="text" 
+                  placeholder="Nationality" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Row 3 -->
+              <input 
+                  type="url" 
+                  placeholder="Flag URL" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+              <input 
+                  type="text" 
+                  placeholder="Club" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Row 4 -->
+              <input 
+                  type="url" 
+                  placeholder="Club Logo URL" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+              <input 
+                  type="number" 
+                  placeholder="Rating" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Row 5 -->
+              <input 
+                  type="number" 
+                  placeholder="Pace" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+              <input 
+                  type="number" 
+                  placeholder="Shooting" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Row 6 -->
+              <input 
+                  type="number" 
+                  placeholder="Passing" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+              <input 
+                  type="number" 
+                  placeholder="Dribbling" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Row 7 -->
+              <input 
+                  type="number" 
+                  placeholder="Defending" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+              <input 
+                  type="number" 
+                  placeholder="Physical" 
+                  class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                  required
+              >
+      
+              <!-- Submit Button -->
+              <button 
+                  type="submit" 
+                  class="col-span-2 mt-4 bg-[#ABA6A6] text-[#3D341B] font-bold rounded-md py-2 text-sm hover:bg-[#3D341B] hover:text-[#ABA6A6] transition"
+              >
+                  Submit
+              </button>
+              <button 
+                  type="submit" 
+                  class="col-span-2 mt-4 bg-[#ABA6A6] text-[#3D341B] font-bold rounded-md py-2 text-sm hover:bg-[#3D341B] hover:text-[#ABA6A6] transition"
+              >
+                  close
+              </button>
+          </form>
+      </div>
+      
 
     </main>
     

@@ -181,3 +181,10 @@ function rightSidePlayers() {
 
 
 rightSidePlayers();
+
+
+document.getElementById('addBtn').addEventListener('click' , ()=>{
+    document.getElementById('playerFormContainer').classList.remove('hidden');
+})
+    
+
