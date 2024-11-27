@@ -1,14 +1,18 @@
 
 .wrapper{
-    background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover; 
+   
     width: 10%;
     aspect-ratio: 3.2/5.2;
 
 }
-
+.cardContent{
+    background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; 
+    width: 100%;
+   height: 100%;
+}
 
 
 
@@ -19,8 +23,8 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover; 
-    width: 20%;
-    aspect-ratio: 3.2/5.2;
+    width: 100%;
+   height: 100%;
 
 }
 

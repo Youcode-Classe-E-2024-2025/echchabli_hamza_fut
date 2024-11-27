@@ -54,7 +54,7 @@ document.getElementById('formation').addEventListener('change', function () {
             container.className='wrapper';
 
             container.innerHTML=`
-            
+            <div class="cardContent">
             <div class="h-[10%]"></div>
             <div class="topContent w-full h-fit flex">
                 <div class="w-1/4   flex flex-col flexGapStat  justify-center gap-1 content-center ">
@@ -85,7 +85,7 @@ document.getElementById('formation').addEventListener('change', function () {
                     <div class="stat flex justify-center"><span>${obj.physical}</span>PHY</div>
                 </div>
               </div>
-              
+              </div>
             
             
             `
@@ -153,6 +153,7 @@ function rightSidePlayers() {
                 selectedCard.classList.add('basis-[10%]');
 
                 selectedCard.innerHTML = `
+                <div class="cardContent">
                    <div class="h-[10%]"></div>
                     <div class="topContent w-full h-fit flex">
                         <div class="w-1/4 flex flex-col flexGapStat justify-center gap-1 content-center">
@@ -179,6 +180,7 @@ function rightSidePlayers() {
                             <div class="stat flex justify-center"><span>${element.defending}</span>DEF</div>
                             <div class="stat flex justify-center"><span>${element.physical}</span>PHY</div>
                         </div>
+                    </div>
                     </div>
                 `;
                 console.log(teamSquad);
@@ -275,9 +277,9 @@ document.getElementById('confirmDelete').addEventListener('click' , ()=>{
 })
 
 
-document.getElementById('updateBtn').addEventListener('click' , ()=>{
-     document.getElementById('updatePlayerContainer').classList.remove('hidden');
-})
+// document.getElementById('updateBtn').addEventListener('click' , ()=>{
+//      document.getElementById('updatePlayerContainer').classList.remove('hidden');
+// })
    
 
 document.getElementById('updateFormClose').addEventListener('click' , ()=>{
