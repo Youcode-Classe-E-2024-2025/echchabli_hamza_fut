@@ -8,6 +8,12 @@
     aspect-ratio: 3.2/5.2;
 
 }
+
+
+
+
+
+
 .cardWrapper{
     background-image: url('https://selimdoyranli.com/cdn/fut-player-card/img/card_bg.png');
     background-repeat: no-repeat;
@@ -51,6 +57,7 @@
     font-size: 8px;
     color: #FFD700;
     margin-top: 5%;
+    
 }
 
 .textSIZE{

@@ -1,4 +1,6 @@
-import { playersData } from "../data/data.js";
+import { players } from "../data/data.js";
+
+let playersData = players ;
 
 let teamSquad=['442' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
 
@@ -42,7 +44,7 @@ document.getElementById('formation').addEventListener('change', function () {
             newDefenceDivs.forEach(div => document.getElementById('defence').appendChild(div));
             newMiddleDivs.forEach(div => document.getElementById('middle').appendChild(div));
             newAttackDivs.forEach(div => document.getElementById('attack').appendChild(div));
-            console.log(teamSquad);
+            // console.log(teamSquad);
         }
        
 
@@ -105,24 +107,33 @@ document.getElementById('formation').addEventListener('change', function () {
   
 let selectedCard = null; 
 let cardNum =null;
+let Pposition =null ; 
 
 
 document.querySelectorAll('.wrapper').forEach(card => {
     card.addEventListener('click', function () {
 
         selectedCard = this;
-         cardNum = this.getAttribute('data-card-number');
+        cardNum = this.getAttribute('data-card-number');
+        Pposition = this.getAttribute('role');
+        
+        rightSidePlayers();
+        
         document.getElementById('rightPlayers').classList.remove('hidden'); 
     });
 });
 
 
 function rightSidePlayers() {
-    let res = JSON.parse(localStorage.getItem('playersList')) || playersData;
-
+    let liste = JSON.parse(localStorage.getItem('playersList')) || playersData;
+    document.getElementById('rightPlayers').innerHTML='';
+   
+    let res=liste.filter(item => item.position == Pposition);
+    // console.log(res);
+    
     res.forEach(element => {
         let retunedDiv = playerCard(element);
-        retunedDiv.classList.add('cursor-pointer');
+        retunedDiv.classList.add('cursor-pointer' ,'basis-[15%]');
 
           
         retunedDiv.addEventListener('click', function () {
@@ -137,6 +148,10 @@ function rightSidePlayers() {
             teamSquad[cardNum]=element.name;
 
             if (selectedCard){
+                selectedCard.classList.remove('flex');
+                selectedCard.classList.remove('basis-[15%]');
+                selectedCard.classList.add('basis-[10%]');
+
                 selectedCard.innerHTML = `
                    <div class="h-[10%]"></div>
                     <div class="topContent w-full h-fit flex">
@@ -180,11 +195,152 @@ function rightSidePlayers() {
 }
 
 
-rightSidePlayers();
 
 
 document.getElementById('addBtn').addEventListener('click' , ()=>{
     document.getElementById('playerFormContainer').classList.remove('hidden');
 })
+
+document.getElementById('addFormClose').addEventListener('click' , ()=>{
+    document.getElementById('playerFormContainer').classList.add('hidden');
+})
+
+// Add an event listener to handle form submission
+document.getElementById('playerForm').addEventListener('submit', function (event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Retrieve form values
+    const playerData = {
+        name: this.elements[0].value,
+        photo: this.elements[1].value,
+        position: this.elements[2].value,
+        nationality: this.elements[3].value,
+        flag: this.elements[4].value,
+        club: this.elements[5].value,
+        logo: this.elements[6].value,
+        rating: parseInt(this.elements[7].value),
+        pace: parseInt(this.elements[8].value),
+        shooting: parseInt(this.elements[9].value),
+        passing: parseInt(this.elements[10].value),
+        dribbling: parseInt(this.elements[11].value),
+        defending: parseInt(this.elements[12].value),
+        physical: parseInt(this.elements[13].value),
+    };
+    
+    playersData.push(playerData);
     
 
+
+    // Optional: Hide the form after submission
+    document.getElementById('playerFormContainer').classList.add('hidden');
+    rightSidePlayers();
+});
+
+function fillDeleteContainer() { 
+
+    let con = document.getElementById('deleteContainer');
+    con.innerHTML='';
+    playersData.forEach(element => {
+
+        let retunedDiv = playerCard(element);
+        retunedDiv.classList.add('cursor-pointer');
+
+        retunedDiv.addEventListener('click' , function () {
+   
+            document.getElementById('deletePlayerName').innerHTML=element.name ; 
+            
+
+
+        })
+
+        con.appendChild(retunedDiv);
+        
+
+    });
+}
+    
+
+document.getElementById('deleteBtn').addEventListener('click' , ()=>{
+    fillDeleteContainer();
+    document.getElementById('deletePlayers').classList.remove('hidden');
+})
+
+document.getElementById('confirmDelete').addEventListener('click' , ()=>{
+   let res = document.getElementById('deletePlayerName').textContent;
+   console.log(res);
+   
+   playersData=playersData.filter(item => item.name!==res);
+   fillDeleteContainer();
+})
+
+
+document.getElementById('updateBtn').addEventListener('click' , ()=>{
+     document.getElementById('updatePlayerContainer').classList.remove('hidden');
+})
+   
+
+document.getElementById('updateFormClose').addEventListener('click' , ()=>{
+    document.getElementById('updatePlayerContainer').classList.add('hidden');
+})
+
+let target=null ;
+
+document.getElementById('allBtn').addEventListener('click' , ()=>{
+    document.getElementById('rightPlayers').classList.remove('hidden');
+    document.getElementById('rightPlayers').innerHTML='';
+    playersData.forEach(element => {
+
+        let retunedDiv = playerCard(element);
+        retunedDiv.onclick=function() {
+            document.getElementById('updatePlayerContainer').classList.remove('hidden');
+            target= element.name; 
+            document.getElementById('updatedPlayerName').textContent=element.name;
+            
+
+ 
+
+            document.getElementById('rightPlayers').classList.add('hidden');
+            
+        };
+        document.getElementById('rightPlayers').appendChild(retunedDiv);
+        
+    });
+})
+
+document.getElementById('updatePlayerForm').addEventListener('submit', function (event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Retrieve form values
+    const playerData = {
+        position: this.elements[0].value,   
+        nationality: this.elements[1].value, 
+        flag: this.elements[2].value,       
+        club: this.elements[3].value,     
+        logo: this.elements[4].value,        
+        rating: parseInt(this.elements[5].value),       
+        shooting: parseInt(this.elements[7].value),  
+        passing: parseInt(this.elements[8].value),  
+        dribbling: parseInt(this.elements[9].value),
+        defending: parseInt(this.elements[10].value),
+        physical: parseInt(this.elements[11].value), 
+    };
+
+    playersData.forEach(element => {
+       if(element.name==target){
+        element=playerData;
+        
+       }
+       
+    });
+
+    console.log(playersData);
+    
+   
+});
+
+document.getElementById('updateFormClose').addEventListener('click', function () {
+   
+    document.getElementById('updatePlayerContainer').classList.add('hidden');
+});

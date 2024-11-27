@@ -18,26 +18,26 @@
        
         <section id="boardContainer" class="bg-black m-auto flex flex-col h-fit ">
             <div id="attack" class="attack w-full flex justify-around items-start flex-1">
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=10>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=11>+</div>  
-              
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="LW" data-card-number=10>+LW </div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="ST" data-card-number=11>+ST</div>  
+               <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="RW" data-card-number=9>+RW</div>
             </div>
             <div id="middle" class="middle w-full flex justify-evenly items-center flex-1">
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=6>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=7>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=8>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=9>+</div>
+              <div class="wrapper flex justify-center items-center  text-xl text-white cursor-pointer"role="CM" data-card-number=6>+CM</div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="CM" data-card-number=7>+CM</div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="CDM" data-card-number=8>+CDM</div>
+             
             </div>
             <div id="defence" class="defence w-full flex justify-around items-end flex-1">
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=2>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=3>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=4>+</div>
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=5>+</div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="LB" data-card-number=2>+LB</div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="CB" data-card-number=3>+CB</div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="CB" data-card-number=4>+CB</div>
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="RB" data-card-number=5>+RB</div>
             </div>
             <div id="GK" class="GK w-full flex justify-evenly items-end flex-1">
-               
                 
-              <div class="wrapper  text-7xl text-white cursor-pointer" data-card-number=1>+</div>
+
+              <div class="wrapper flex justify-center items-center text-xl text-white cursor-pointer" role="GK" data-card-number=1>+GK</div>
              
                 
             </div>
@@ -49,22 +49,50 @@
              <label for="player-stats" class="text-[#3D341B] font-bold uppercase text-xl tracking-wide">FORMATION</label></br>
             
             <select id="formation" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]">
-              <option value="442">4-4-2</option>
+              <option value="433">4-3-3</option>
               <option value="532">5-3-2</option>
               <option value="343">3-4-3</option>
               <option value="334">3-3-4</option>
-              <option value="433">4-3-3</option>
+              <option value="442">4-4-2</option>
               
             </select>
 
+            <button type="button" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]" id="allBtn">All player</button>
+           
+
             <button type="button" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]" id="addBtn">Add player</button>
             
-        </section>
-        <div class="  absolute left-[10%] top-[5%] w-4/6 rounded-sm m-auto p-7 bg-slate-900 h-[300px] overflow-y-auto flex  flex-wrap gap-12 hidden scrollbar-thumb-gray-500 scrollbar-track-gray-700 scrollbar-thin" id="rightPlayers">
-          
+            <button type="button" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]" id="deleteBtn">Delete player</button>
+            
+            <button type="button" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]" id="updateBtn">Update player</button>
             
 
+        </section>
+        <div class=" absolute left-[10%] top-[5%] w-4/6 rounded-sm m-auto p-7 bg-slate-900 h-[230px] overflow-y-auto flex  flex-wrap gap-12 hidden scrollbar-thumb-gray-500 scrollbar-track-gray-700 scrollbar-thin" id="rightPlayers">
+          
+           
         </div>
+        <div class="absolute hidden left-[10%] top-[5%] w-5/6 h-3/4 rounded-sm m-auto p-7 bg-amber-900  overflow-y-auto flex items-center justify-between  scrollbar-thumb-gray-500 scrollbar-track-gray-700 scrollbar-thin" id="deletePlayers">
+           
+            <button class="absolute top-2 right-2 text-white bg-gray-700 hover:bg-gray-800 rounded-full p-2 text-sm font-bold transition" onclick="document.getElementById('deletePlayers').classList.add('hidden')">
+                ✕
+            </button>
+        
+            
+            <div class="container w-4/5 h-full  bg-gray-800 rounded-md flex flex-wrap gap-5 text-white overflow-auto" id="deleteContainer">
+               
+               
+            </div>
+        
+           
+            <div class="leftContent flex flex-col items-start gap-2">
+                <h3 class="text-black bg-white rounded-md px-2 py-1 w-fit text-sm" id="deletePlayerName">Player Name</h3>
+                <button class="text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md text-sm font-medium transition" id="confirmDelete">
+                    Confirm Delete
+                </button>
+            </div>
+        </div>
+        
 
         <div id="playerFormContainer" class="absolute hidden  left-[10%] w-3/4 bg-black p-6 rounded-lg text-[#ABA6A6]">
           <form id="playerForm" class="grid grid-cols-2 gap-4">
@@ -183,12 +211,142 @@
                   Submit
               </button>
               <button 
+                  id="addFormClose"
                   type="submit" 
                   class="col-span-2 mt-4 bg-[#ABA6A6] text-[#3D341B] font-bold rounded-md py-2 text-sm hover:bg-[#3D341B] hover:text-[#ABA6A6] transition"
               >
                   close
               </button>
           </form>
+      </div>
+      
+      <div id="updatePlayerContainer" class="absolute hidden  left-[10%] w-3/4 bg-slate-900 p-6 rounded-lg text-[#ABA6A6]">
+        <form id="updatePlayerForm" class="grid grid-cols-2 gap-4">
+            <!-- Form Title -->
+            <h2 class="col-span-2 text-center text-lg font-bold text-[#ABA6A6]" id="updatedPlayerName">Update Player</h2>
+            
+            <!-- Row 1 -->
+            <!-- <input 
+                type="text" 
+                placeholder="Name" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+            <input 
+                type="url" 
+                placeholder="Photo URL" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            > -->
+      
+            <!-- Row 2 -->
+            <select 
+                class="bg-[#3D341B] text-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+                <option value="" disabled selected>Select Position</option>
+                <option value="RW">RW</option>
+                <option value="LW">LW</option>
+                <option value="CB">CB</option>
+                <option value="GK">GK</option>
+                <option value="RB">RB</option>
+                <option value="LB">LB</option>
+                <option value="CM">CM</option>
+                <option value="CDM">CDM</option>
+                <option value="ST">ST</option>
+            </select>
+            <input 
+                type="text" 
+                placeholder="Nationality" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+      
+            <!-- Row 3 -->
+            <input 
+                type="url" 
+                placeholder="Flag URL" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+            <input 
+                type="text" 
+                placeholder="Club" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+      
+            <!-- Row 4 -->
+            <input 
+                type="url" 
+                placeholder="Club Logo URL" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+            <input 
+                type="number" 
+                placeholder="Rating" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+      
+            <!-- Row 5 -->
+            <input 
+                type="number" 
+                placeholder="Pace" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+            <input 
+                type="number" 
+                placeholder="Shooting" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+      
+            <!-- Row 6 -->
+            <input 
+                type="number" 
+                placeholder="Passing" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+            <input 
+                type="number" 
+                placeholder="Dribbling" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+      
+            <!-- Row 7 -->
+            <input 
+                type="number" 
+                placeholder="Defending" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+            <input 
+                type="number" 
+                placeholder="Physical" 
+                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                required
+            >
+      
+            <!-- Submit and Close Buttons -->
+            <button 
+                type="submit" 
+                class="col-span-2 mt-4 bg-[#ABA6A6] text-[#3D341B] font-bold rounded-md py-2 text-sm hover:bg-[#3D341B] hover:text-[#ABA6A6] transition"
+            >
+                Update Player
+            </button>
+            <button 
+                id="updateFormClose"
+                type="button" 
+                class="col-span-2 mt-4 bg-[#ABA6A6] text-[#3D341B] font-bold rounded-md py-2 text-sm hover:bg-[#3D341B] hover:text-[#ABA6A6] transition"
+            >
+                Close
+            </button>
+        </form>
       </div>
       
 
