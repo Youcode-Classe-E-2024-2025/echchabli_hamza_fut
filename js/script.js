@@ -126,7 +126,7 @@ document.querySelectorAll('.wrapper').forEach(card => {
 
 function rightSidePlayers() {
     let liste = JSON.parse(localStorage.getItem('playersList')) || playersData;
-    document.getElementById('rightPlayers').innerHTML='';
+    document.getElementById('rightPlayersDisplay').innerHTML='';
    
     let res=liste.filter(item => item.position == Pposition);
     // console.log(res);
@@ -190,11 +190,13 @@ function rightSidePlayers() {
             }
         });
 
-        document.getElementById('rightPlayers').appendChild(retunedDiv);
+        document.getElementById('rightPlayersDisplay').appendChild(retunedDiv);
         
         
     });
 }
+
+document.getElementById('removePlayer').
 
 
 
