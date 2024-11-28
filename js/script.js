@@ -1,15 +1,18 @@
 import { players } from "../data/data.js";
 
+// localStorage.clear();
 
 let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
 
 let teamSquad= JSON.parse(localStorage.getItem('current11')) || ['433' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
+console.log('fromStorage' , teamSquad);
+
 let value;
 document.getElementById('formation').addEventListener('change', function () {
      value = this.value; // Get the selected option's value
     teamSquad[0]=value;
     localStorage.setItem('current11', JSON.stringify(teamSquad));
-    // console.log(JSON.parse(localStorage.getItem('current11')));
+    console.log(JSON.parse(localStorage.getItem('current11')));
     
 
     if (value) {
@@ -57,6 +60,15 @@ document.getElementById('formation').addEventListener('change', function () {
 
             let container = document.createElement('div');
             container.className='wrapper';
+            let NtextSize =8; 
+            let mtext=0;
+            if (obj.name.length>=20) {
+
+                console.log(obj.name.length);
+                mtext=4;
+                NtextSize=6;
+
+            } 
 
            
 
@@ -77,7 +89,7 @@ document.getElementById('formation').addEventListener('change', function () {
 
 
 
-              <div class="playerName w-full h-fit  flex justify-center items-center">${obj.name}</div>
+              <div class="playerName w-full h-fit  flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${obj.name}</div>
               <hr class="m-auto w-4/5 border-none " id="firstHR">
               <div class="bottomContent w-3/4  m-auto flex justify-evenly">
                 <div class="  ">
@@ -156,7 +168,7 @@ function rightSidePlayers() {
           
             teamSquad[cardNum]=element.name;
             localStorage.setItem('current11', JSON.stringify(teamSquad));
-        console.log(JSON.parse(localStorage.getItem('current11')));
+            console.log(JSON.parse(localStorage.getItem('current11')));
     
 
             if (selectedCard){
@@ -196,7 +208,7 @@ function rightSidePlayers() {
                     </div>
                     </div>
                 `;
-                console.log(teamSquad);
+                // console.log(teamSquad);
 
                 document.getElementById('rightPlayers').classList.add('hidden');
                 selectedCard = null; 
@@ -230,7 +242,8 @@ document.getElementById('removePlayer').addEventListener('click' , ()=>{
         }
         return item; // Keep the item if it doesn't match
     });
-    console.log(teamSquad);
+        localStorage.setItem('current11', JSON.stringify(teamSquad));
+        // console.log(JSON.parse(localStorage.getItem('current11')));
 
 
     
@@ -353,7 +366,7 @@ let target=null ;
 
 document.getElementById('allBtn').addEventListener('click' , ()=>{
     document.getElementById('sidePlayers').classList.remove('hidden');
-    document.getElementById('sidePlayers').innerHTML='';
+    document.getElementById('sidePlayersContainer').innerHTML='';
     playersData.forEach(element => {
 
         let retunedDiv = playerCard(element);
@@ -369,7 +382,7 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
             fillForm(target);
             
         };
-        document.getElementById('sidePlayers').appendChild(retunedDiv);
+        document.getElementById('sidePlayersContainer').appendChild(retunedDiv);
         
     });
 })
@@ -444,3 +457,75 @@ document.getElementById('updateFormClose').addEventListener('click', function ()
     document.getElementById('updatePlayerContainer').classList.add('hidden');
 });
 
+
+function reloadForm() {
+    
+     teamSquad;
+    teamSquad.forEach((playerName, index) => {
+        // Find the card by its data-card-number attribute
+        let selectedCard = document.querySelector(`[data-card-number="${index + 0}"]`);
+        console.log(playerName , index);
+        
+        if (!selectedCard) return; // Skip if no card exists for this number
+    
+        if (playerName === null) {
+            // Clear the card for empty slots
+            selectedCard.innerHTML = `<div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+${selectedCard.getAttribute('role')}</div>`;
+            selectedCard.removeAttribute('data-player-name');
+        } else {
+            // Find the player object in playersData
+            let element = playersData.find(player => player.name === playerName);
+            console.log(element);
+            
+            if (element) {
+                // Update the card with player data
+                selectedCard.classList.remove('flex');
+                selectedCard.classList.remove('basis-[15%]');
+                selectedCard.classList.add('basis-[10%]');
+                selectedCard.dataset.playerName = element.name;
+              console.log(selectedCard);
+              
+                selectedCard.innerHTML = `
+                    <div class="cardContent">
+                        <div class="h-[10%]"></div>
+                        <div class="topContent w-full h-fit flex">
+                            <div class="w-1/4 flex flex-col flexGapStat justify-center gap-1 content-center">
+                                <div class="flex justify-center h-fit ratingText mbFlag">${element.rating}</div>
+                                <div class="flex justify-center h-fit textSIZE mbFlag">${element.position}</div>
+                                <div class="flex justify-center w-full"><img class="w-3/6" src="${element.flag}" alt="${element.nationality}" draggable="false"/></div>
+                                <div class="flex justify-center w-full"><img class="w-3/6" src="${element.logo}" alt="${element.club}" draggable="false"/></div>
+                            </div>
+                            <div class="w-3/4 flex">
+                                <img class="w-11/12 mt-[2.8%]" src="${element.photo}" alt="${element.name}" draggable="false"/>
+                            </div>
+                        </div>
+                        <div class="playerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]" style="font-size: 10px; margin-top: 0px; margin-bottom: 0px;">${element.name}</div>
+                        <hr class="m-auto w-4/5 border-none" id="firstHR">
+                        <div class="bottomContent w-3/4 m-auto flex justify-evenly">
+                            <div>
+                                <div class="stat flex justify-center"><span>${element.pace}</span>PAC</div>
+                                <div class="stat flex justify-center"><span>${element.shooting}</span>SHO</div>
+                                <div class="stat flex justify-center"><span>${element.passing}</span>PAS</div>
+                            </div>
+                            <hr class="mt-1 h-10 w-[1px] bg-[#3D341B] border-none">
+                            <div>
+                                <div class="stat flex justify-center"><span>${element.dribbling}</span>DRI</div>
+                                <div class="stat flex justify-center"><span>${element.defending}</span>DEF</div>
+                                <div class="stat flex justify-center"><span>${element.physical}</span>PHY</div>
+                            </div>
+                        </div>
+                    </div>`;
+            }
+        }
+    });
+    
+}
+
+window.onload = () => {
+
+    
+    
+    reloadForm();
+    changeLayout(teamSquad[0]);
+    
+}

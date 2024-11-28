@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed:300,400,700"/>
     
 </head>
-<body class="pb-10">
+<body class="pb-10 ">
     <main class="relative h-full w-full flex">
         
         
@@ -84,9 +84,17 @@
            
         </div>
 
-        <div class=" absolute left-[10%] top-[5%] w-4/6 hidden rounded-sm m-auto p-7 bg-slate-900 h-[230px] flex flex-wrap gap-2  overflow-y-auto" id="sidePlayers">
+        <div class=" absolute left-[10%] top-[5%] w-4/6 hidden rounded-sm m-auto p-7 bg-slate-900 h-[230px]  " id="sidePlayers">
 
-
+            <button class="absolute top-2 right-2 text-white bg-gray-700 hover:bg-gray-800 rounded-full p-2 text-sm font-bold transition" onclick="document.getElementById('sidePlayers').classList.add('hidden')">
+                ✕
+            </button>
+        
+            
+            <div class="container w-full h-full  bg-gray-800 rounded-md flex flex-wrap gap-5 text-white overflow-auto" id="sidePlayersContainer">
+               
+               
+            </div>
             
 
             
