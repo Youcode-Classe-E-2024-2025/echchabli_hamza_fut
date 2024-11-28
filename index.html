@@ -18,9 +18,9 @@
        
         <section id="boardContainer" class="bg-black m-auto flex flex-col h-fit ">
             <div id="attack" class="attack w-full flex justify-around items-start flex-1">
-              <div class="wrapper " role="LW" data-card-number=10><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+LW </div></div>
-              <div class="wrapper " role="ST" data-card-number=11><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+ST</div>  </div>
-               <div class="wrapper " role="RW" data-card-number=9><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+RW</div></div>
+              <div class="wrapper " role="LW"  data-card-number=9><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+LW </div></div>
+              <div class="wrapper " role="ST" data-card-number=10><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+ST</div>  </div>
+               <div class="wrapper " role="RW" data-card-number=11><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+RW</div></div>
             </div>
             <div id="middle" class="middle w-full flex justify-evenly items-center flex-1">
               <div class="wrapper "role="CM" data-card-number=6><div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+CM</div></div>
@@ -74,10 +74,25 @@
             <div id="rightPlayersDisplay" class=" w-11/12 overflow-y-auto flex 
             flex-wrap gap-12  scrollbar-thumb-gray-500 scrollbar-track-gray-700 scrollbar-thin"></div>
 
-            <button id="removePlayer" class="1/12 bg-blue-200 text-blue-800 h-fit w-fit rounded-sm mx-2">remove</button>
-          
+            <div id="buttonContainer w-1/12">
+             <button id="removePlayer" class="w-full bg-blue-200 text-blue-800 h-fit  rounded-sm m-2">remove</button>
+             <button id="closePlayerEdit" class="w-full bg-blue-200 text-blue-800 h-fit  rounded-sm mx-2">close</button>
+
+            </div>
+
+            
            
         </div>
+
+        <div class=" absolute left-[10%] top-[5%] w-4/6 hidden rounded-sm m-auto p-7 bg-slate-900 h-[230px] flex flex-wrap gap-2  overflow-y-auto" id="sidePlayers">
+
+
+            
+
+            
+           
+        </div>
+
         <div class="absolute hidden left-[10%] top-[5%] w-5/6 h-3/4 rounded-sm m-auto p-7 bg-amber-900  overflow-y-auto flex items-center justify-between  scrollbar-thumb-gray-500 scrollbar-track-gray-700 scrollbar-thin" id="deletePlayers">
            
             <button class="absolute top-2 right-2 text-white bg-gray-700 hover:bg-gray-800 rounded-full p-2 text-sm font-bold transition" onclick="document.getElementById('deletePlayers').classList.add('hidden')">

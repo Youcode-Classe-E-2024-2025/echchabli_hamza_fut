@@ -2,7 +2,7 @@ import { players } from "../data/data.js";
 
 let playersData = players ;
 
-let teamSquad=['442' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
+let teamSquad=['433' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
 let value;
 document.getElementById('formation').addEventListener('change', function () {
      value = this.value; // Get the selected option's value
@@ -53,6 +53,8 @@ document.getElementById('formation').addEventListener('change', function () {
             let container = document.createElement('div');
             container.className='wrapper';
 
+           
+
             container.innerHTML=`
             <div class="cardContent">
             <div class="h-[10%]"></div>
@@ -94,16 +96,16 @@ document.getElementById('formation').addEventListener('change', function () {
             
         }
 
-        function emptyCard() {
-            let container = document.createElement('div');
-            container.classList.add('cardWrapper', 'flex', 'justify-center', 'text-9xl', 'text-white', 'cursor-pointer');
+        // function emptyCard() {
+        //     let container = document.createElement('div');
+        //     container.classList.add('Wrapper', 'flex', 'justify-center', 'text-4xl', 'text-white', 'cursor-pointer');
 
-            container.innerHTML=`+` ;
+        //     container.innerHTML=`+` ;
 
-            return container ;
+        //     return container ;
 
             
-        }
+        // }
   
 let selectedCard = null; 
 let cardNum =null;
@@ -128,8 +130,8 @@ function rightSidePlayers() {
     let liste = JSON.parse(localStorage.getItem('playersList')) || playersData;
     document.getElementById('rightPlayersDisplay').innerHTML='';
    
-    let res=liste.filter(item => item.position == Pposition);
-    // console.log(res);
+    let filteredRes=liste.filter(item => item.position == Pposition);
+    let res = filteredRes.filter(obj => !teamSquad.includes(obj.name));  // console.log(res);
     
     res.forEach(element => {
         let retunedDiv = playerCard(element);
@@ -140,9 +142,11 @@ function rightSidePlayers() {
             let NtextSize =10; 
             let mtext=0;
             if (element.name.length>=20) {
+
                 console.log(element.name.length);
                 mtext=4;
                 NtextSize=8;
+
             } 
           
             teamSquad[cardNum]=element.name;
@@ -151,6 +155,7 @@ function rightSidePlayers() {
                 selectedCard.classList.remove('flex');
                 selectedCard.classList.remove('basis-[15%]');
                 selectedCard.classList.add('basis-[10%]');
+                selectedCard.dataset.playerName = element.name ;
 
                 selectedCard.innerHTML = `
                 <div class="cardContent">
@@ -195,8 +200,42 @@ function rightSidePlayers() {
         
     });
 }
+document.getElementById('closePlayerEdit').addEventListener('click', function () {
+   
+    document.getElementById('rightPlayers').classList.add('hidden');
+});
 
-document.getElementById('removePlayer').
+
+
+document.getElementById('removePlayer').addEventListener('click' , ()=>{
+
+
+    let cardContent = document.querySelector('[data-card-number="'+cardNum+'"]');
+    
+
+    teamSquad = teamSquad.map(item => {
+        const playerName = selectedCard.getAttribute('data-player-name'); // Get the data-player-name attribute
+        console.log(item, 'test', playerName);
+    
+        if (item === playerName) { // Compare item.name with the attribute value
+            return null; // Replace the matching item with null
+        }
+        return item; // Keep the item if it doesn't match
+    });
+    console.log(teamSquad);
+
+
+    
+    
+    cardContent.innerHTML=`
+     <div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+`+Pposition+`</div>
+    `;
+    console.log(cardContent);
+    document.getElementById('rightPlayers').classList.add('hidden');
+
+
+}
+)
 
 
 
@@ -292,8 +331,8 @@ document.getElementById('updateFormClose').addEventListener('click' , ()=>{
 let target=null ;
 
 document.getElementById('allBtn').addEventListener('click' , ()=>{
-    document.getElementById('rightPlayers').classList.remove('hidden');
-    document.getElementById('rightPlayers').innerHTML='';
+    document.getElementById('sidePlayers').classList.remove('hidden');
+    document.getElementById('sidePlayers').innerHTML='';
     playersData.forEach(element => {
 
         let retunedDiv = playerCard(element);
@@ -305,11 +344,11 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
 
  
 
-            document.getElementById('rightPlayers').classList.add('hidden');
+            document.getElementById('sidePlayers').classList.add('hidden');
             fillForm(target);
             
         };
-        document.getElementById('rightPlayers').appendChild(retunedDiv);
+        document.getElementById('sidePlayers').appendChild(retunedDiv);
         
     });
 })
@@ -381,3 +420,4 @@ document.getElementById('updateFormClose').addEventListener('click', function ()
    
     document.getElementById('updatePlayerContainer').classList.add('hidden');
 });
+
