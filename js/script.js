@@ -112,6 +112,63 @@ document.getElementById('formation').addEventListener('change', function () {
 
             
         }
+        function smallPlayerCard( obj ) {
+
+            let container = document.createElement('div');
+            container.className='wrapper';
+            let NtextSize =8; 
+            let mtext=0;
+            let samllText=7;
+            if (obj.name.length>=20) {
+
+                console.log(obj.name.length);
+                mtext=4;
+                NtextSize=6;
+
+            } 
+
+           
+
+            container.innerHTML=`
+            <div class="cardContent">
+            <div class="h-[10%]"></div>
+            <div class="topContent w-full h-fit flex">
+                <div class="w-1/4   flex flex-col flexGapStat  justify-center gap-1 content-center ">
+                  <div class="flex justify-center h-fit  ratingText mbFlag">${obj.rating}</div>
+                  <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
+                  <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="${obj.nationality}" draggable="false"/></div>
+                  <div class="flex justify-center w-full "><img class="w-3/6" src="${obj.logo}" alt="${obj.club}" draggable="false"/></div>
+                </div>
+                
+                <div class="w-3/4 flex"><img class=" w-11/12  mt-[2.8%] " src="${obj.photo}" alt="${obj.name}" draggable="false"/>
+                </div>
+              </div>
+
+
+
+              <div class="playerName w-full h-fit  flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${obj.name}</div>
+              <hr class="m-auto w-4/5 border-none " id="firstHR">
+              <div class="bottomContent w-3/4  m-auto flex justify-evenly">
+                <div class="  ">
+                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.pace}PAC</span></div>
+                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.shooting}SHO</span></div>
+                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.passing}PAS</span></div>
+                </div>
+                <hr class=  " mt-1 h-10  w-[1px] bg-[#3D341B] border-none" >
+                <div class="  ">
+                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.dribbling}DRI</span></div>
+                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.defending}DEF</span></div>
+                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.physical}PHY</span></div>
+                </div>
+              </div>
+              </div>
+            
+            
+            `
+            return container ;
+
+            
+        }
 
         // function emptyCard() {
         //     let container = document.createElement('div');
@@ -316,7 +373,7 @@ function fillDeleteContainer() {
     con.innerHTML='';
     playersData.forEach(element => {
 
-        let retunedDiv = playerCard(element);
+        let retunedDiv = smallPlayerCard(element);
         retunedDiv.classList.add('cursor-pointer');
 
         retunedDiv.addEventListener('click' , function () {
@@ -369,7 +426,7 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
     document.getElementById('sidePlayersContainer').innerHTML='';
     playersData.forEach(element => {
 
-        let retunedDiv = playerCard(element);
+        let retunedDiv = smallPlayerCard(element);
         retunedDiv.onclick=function() {
             document.getElementById('updatePlayerContainer').classList.remove('hidden');
             target= element.name; 

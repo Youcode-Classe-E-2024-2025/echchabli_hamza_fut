@@ -3,16 +3,18 @@ html  {
     height: 100%;
 
     width: 100%;
+    margin: 0; 
+    padding: 0;
 
 }
 body{
     height: 100%;
 
     width: 100%;
-    background: url('../resource/d1.jpg'); 
-    background-size: cover; 
-
-
+    background: url('../resource/d1.jpg') no-repeat center center; 
+    background-size: 100% 160%;
+    margin: 0; 
+    padding: 0;
 }
 main{
     margin-top: 40px;
@@ -26,7 +28,7 @@ main{
     background-size: cover; 
    
 
-    width: 70%;
+    width: 75%;
 
     aspect-ratio: 4.5 / 3;
 
