@@ -3,9 +3,9 @@ import { players } from "../data/data.js";
 let playersData = players ;
 
 let teamSquad=['442' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
-
+let value;
 document.getElementById('formation').addEventListener('change', function () {
-    const value = this.value; // Get the selected option's value
+     value = this.value; // Get the selected option's value
     teamSquad[0]=value;
     if (value) {
         changeLayout(parseInt(value));
@@ -284,6 +284,7 @@ document.getElementById('confirmDelete').addEventListener('click' , ()=>{
 
 document.getElementById('updateFormClose').addEventListener('click' , ()=>{
     document.getElementById('updatePlayerContainer').classList.add('hidden');
+
 })
 
 let target=null ;
@@ -303,6 +304,7 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
  
 
             document.getElementById('rightPlayers').classList.add('hidden');
+            fillForm(target);
             
         };
         document.getElementById('rightPlayers').appendChild(retunedDiv);
@@ -310,10 +312,40 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
     });
 })
 
+function fillForm(name) {
+    // Find the player object by name
+    let obj = playersData.find(item => item.name === name);
+    console.log('fill' , obj);
+    
+
+    if (obj) {
+      
+       
+        document.getElementById('playerPosition').value = obj.position || '';
+        document.getElementById('playerNationality').value = obj.nationality || '';
+        document.getElementById('playerFlagUrl').value = obj.flag || '';
+        document.getElementById('playerClub').value = obj.club || '';
+        document.getElementById('playerClubLogo').value = obj.logo || '';
+        document.getElementById('playerRating').value = obj.rating || '';
+        document.getElementById('playerPace').value = obj.pace || '';
+        document.getElementById('playerShooting').value = obj.shooting || '';
+        document.getElementById('playerPassing').value = obj.passing || '';
+        document.getElementById('playerDribbling').value = obj.dribbling || '';
+        document.getElementById('playerDefending').value = obj.defending || '';
+        document.getElementById('playerPhysical').value = obj.physical || '';
+
+        console.log('Form filled with data:', obj);
+    }else{
+        console.error('Player not found:', name);
+    }
+}
+
+
 document.getElementById('updatePlayerForm').addEventListener('submit', function (event) {
+ 
     // Prevent the default form submission behavior
     event.preventDefault();
-
+     
     // Retrieve form values
     const playerData = {
         position: this.elements[0].value,   
@@ -328,17 +360,18 @@ document.getElementById('updatePlayerForm').addEventListener('submit', function 
         defending: parseInt(this.elements[10].value),
         physical: parseInt(this.elements[11].value), 
     };
-
-    playersData.forEach(element => {
-       if(element.name==target){
-        element=playerData;
-        
-       }
-       
+   
+    playersData = playersData.map(element => {
+        if (element.name === target) {
+            playerData.name = element.name;
+            playerData.photo = element.photo;
+            return playerData;
+        }
+        return element
     });
 
-    console.log(playersData);
     
+    document.getElementById('updatePlayerContainer').classList.add('hidden');
    
 });
 
