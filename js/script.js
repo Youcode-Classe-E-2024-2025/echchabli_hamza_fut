@@ -1,12 +1,17 @@
 import { players } from "../data/data.js";
 
-let playersData = players ;
 
-let teamSquad=['433' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
+let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
+
+let teamSquad= JSON.parse(localStorage.getItem('current11')) || ['433' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
 let value;
 document.getElementById('formation').addEventListener('change', function () {
      value = this.value; // Get the selected option's value
     teamSquad[0]=value;
+    localStorage.setItem('current11', JSON.stringify(teamSquad));
+    // console.log(JSON.parse(localStorage.getItem('current11')));
+    
+
     if (value) {
         changeLayout(parseInt(value));
     }
@@ -127,7 +132,7 @@ document.querySelectorAll('.wrapper').forEach(card => {
 
 
 function rightSidePlayers() {
-    let liste = JSON.parse(localStorage.getItem('playersList')) || playersData;
+    let liste = playersData;
     document.getElementById('rightPlayersDisplay').innerHTML='';
    
     let filteredRes=liste.filter(item => item.position == Pposition);
@@ -150,6 +155,9 @@ function rightSidePlayers() {
             } 
           
             teamSquad[cardNum]=element.name;
+            localStorage.setItem('current11', JSON.stringify(teamSquad));
+        console.log(JSON.parse(localStorage.getItem('current11')));
+    
 
             if (selectedCard){
                 selectedCard.classList.remove('flex');
@@ -273,6 +281,15 @@ document.getElementById('playerForm').addEventListener('submit', function (event
     
     playersData.push(playerData);
     
+    console.log('test' , playersData);
+    
+    
+    localStorage.setItem('playersLISTE', JSON.stringify(playersData));
+    // console.log(JSON.parse(localStorage.getItem('playersLISTE')));
+    
+
+
+    
 
 
     // Optional: Hide the form after submission
@@ -311,9 +328,13 @@ document.getElementById('deleteBtn').addEventListener('click' , ()=>{
 
 document.getElementById('confirmDelete').addEventListener('click' , ()=>{
    let res = document.getElementById('deletePlayerName').textContent;
-   console.log(res);
+//    console.log(res);
    
    playersData=playersData.filter(item => item.name!==res);
+   localStorage.setItem('playersLISTE', JSON.stringify(playersData));
+
+//    console.log(JSON.parse(localStorage.getItem('playersLISTE')));
+   
    fillDeleteContainer();
 })
 
@@ -410,6 +431,8 @@ document.getElementById('updatePlayerForm').addEventListener('submit', function 
         }
         return element
     });
+    localStorage.setItem('playersLISTE', JSON.stringify(playersData));
+    console.log('testLocalStorge' , JSON.parse(localStorage.getItem('playersLISTE')));
 
     
     document.getElementById('updatePlayerContainer').classList.add('hidden');
