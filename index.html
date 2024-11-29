@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed:300,400,700"/>
     
 </head>
-<body class="pb-10 ">
+<body class="pb-10  p-0">
     <main class="relative h-full w-full flex">
         
         
@@ -45,9 +45,9 @@
         </section>
     
         
-        <section class="flex flex-col gap-2 w-full max-w-sm mx-auto" style="width: 20%;">
+        <section class="flex flex-col gap-2 w-full h-fit max-w-sm mx-auto rounded-lg" style="width: 20%; background-color: rgba(78, 76, 76, 0.8);padding-top: 4px; padding-bottom: 4px; padding-left: 1%;" >
           
-             <label for="player-stats" class="text-[#FFFFFF] font-bold uppercase text-xl w-fit p-3 bg-orange-950 -mb-6 rounded-md">FORMATION</label></br>
+             <label for="player-stats" class="text-[#FFFFFF] font-bold uppercase text-base w-11/12 text-center  py-2 bg-orange-950 -mb-6 rounded-md">FORMATION</label></br>
             
             <select id="formation" class="bg-[#3D341B] w-11/12 text-white border border-black rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#b8b8b8] focus:border-[#b8b8b8]">
               <option value="433">4-3-3</option>
@@ -356,7 +356,7 @@
             <input 
                 type="number" 
                 placeholder="Physical" 
-                class="bg-[#3D341B] text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
+                class="bg-[#3D341B]   text-[#ABA6A6] placeholder-[#ABA6A6] border border-[#ABA6A6] rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#ABA6A6] focus:border-[#ABA6A6]" 
                 required
                 id="playerPhysical"
             >
@@ -378,8 +378,15 @@
         </form>
       </div>
       
+      
 
     </main>
+
+    <footer id="footerDiv" class="w-full h-60  p-5 flex  gap-5 overflow-x-auto" style="background-color: rgba(78, 76, 76, 0.8);">
+
+
+
+    </footer>
     
     
     

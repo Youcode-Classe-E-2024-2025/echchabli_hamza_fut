@@ -1,6 +1,6 @@
 import { players } from "../data/data.js";
 
-// localStorage.clear();
+localStorage.clear();
 
 let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
 
@@ -93,15 +93,15 @@ document.getElementById('formation').addEventListener('change', function () {
               <hr class="m-auto w-4/5 border-none " id="firstHR">
               <div class="bottomContent w-3/4  m-auto flex justify-evenly">
                 <div class="  ">
-                    <div class="stat flex justify-center"><span>${obj.pace}</span>PAC</div>
-                    <div class="stat flex justify-center"><span>${obj.shooting}</span>SHO</div>
-                    <div class="stat flex justify-center"><span>${obj.passing}</span>PAS</div>
+                    <div class="stat flex justify-center "><span>${obj.pace}</span>PAC</div>
+                    <div class="stat flex justify-center "><span>${obj.shooting}</span>SHO</div>
+                    <div class="stat flex justify-center "><span>${obj.passing}</span>PAS</div>
                 </div>
                 <hr class=  " mt-1 h-10  w-[1px] bg-[#3D341B] border-none" >
                 <div class="  ">
-                    <div class="stat flex justify-center"><span>${obj.dribbling}</span>DRI</div>
-                    <div class="stat flex justify-center"><span>${obj.defending}</span>DEF</div>
-                    <div class="stat flex justify-center"><span>${obj.physical}</span>PHY</div>
+                    <div class="stat flex justify-center "><span>${obj.dribbling}</span>DRI</div>
+                    <div class="stat flex justify-center "><span>${obj.defending}</span>DEF</div>
+                    <div class="stat flex justify-center "><span>${obj.physical}</span>PHY</div>
                 </div>
               </div>
               </div>
@@ -219,7 +219,7 @@ function rightSidePlayers() {
 
                 console.log(element.name.length);
                 mtext=4;
-                NtextSize=8;
+                NtextSize=6;
 
             } 
           
@@ -251,16 +251,17 @@ function rightSidePlayers() {
                     <div class="playerName w-full h-fit nameSIZE flex justify-center items-center  text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${element.name}</div>
                     <hr class="m-auto w-4/5 border-none" id="firstHR">
                     <div class="bottomContent w-3/4 m-auto flex justify-evenly">
-                        <div>
-                            <div class="stat flex justify-center"><span>${element.pace}</span>PAC</div>
-                            <div class="stat flex justify-center"><span>${element.shooting}</span>SHO</div>
-                            <div class="stat flex justify-center"><span>${element.passing}</span>PAS</div>
+                         <div class="bottomContent w-3/4 m-auto flex justify-evenly">
+                            <div>
+                            <div class="stat flex justify-center "><span class=" text-xsmall">${element.pace}PAC</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.shooting}SHO</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.passing}PAS</span></div>
                         </div>
-                        <hr class="mt-1 h-10 w-[1px] bg-[#3D341B] border-none">
+                        <hr class="mt-1 h-6 w-[1px] bg-[#3D341B] border-none">
                         <div>
-                            <div class="stat flex justify-center"><span>${element.dribbling}</span>DRI</div>
-                            <div class="stat flex justify-center"><span>${element.defending}</span>DEF</div>
-                            <div class="stat flex justify-center"><span>${element.physical}</span>PHY</div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall" >${element.dribbling}DRI</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.defending}DEF</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.physical}PHY</span></div>
                         </div>
                     </div>
                     </div>
@@ -270,13 +271,21 @@ function rightSidePlayers() {
                 document.getElementById('rightPlayers').classList.add('hidden');
                 selectedCard = null; 
             }
+            displayPlayersInFooter(playersData);
         });
 
         document.getElementById('rightPlayersDisplay').appendChild(retunedDiv);
         
         
     });
+
+    console.log('switch');
+    
+    
+
 }
+
+
 document.getElementById('closePlayerEdit').addEventListener('click', function () {
    
     document.getElementById('rightPlayers').classList.add('hidden');
@@ -302,7 +311,7 @@ document.getElementById('removePlayer').addEventListener('click' , ()=>{
         localStorage.setItem('current11', JSON.stringify(teamSquad));
         // console.log(JSON.parse(localStorage.getItem('current11')));
 
-
+         
     
     
     cardContent.innerHTML=`
@@ -310,9 +319,11 @@ document.getElementById('removePlayer').addEventListener('click' , ()=>{
     `;
     console.log(cardContent);
     document.getElementById('rightPlayers').classList.add('hidden');
-
+    
+    displayPlayersInFooter(playersData);
 
 }
+ 
 )
 
 
@@ -365,6 +376,7 @@ document.getElementById('playerForm').addEventListener('submit', function (event
     // Optional: Hide the form after submission
     document.getElementById('playerFormContainer').classList.add('hidden');
     rightSidePlayers();
+    displayPlayersInFooter(playersData);
 });
 
 function fillDeleteContainer() { 
@@ -378,10 +390,8 @@ function fillDeleteContainer() {
 
         retunedDiv.addEventListener('click' , function () {
    
-            document.getElementById('deletePlayerName').innerHTML=element.name ; 
+            document.getElementById('deletePlayerName').innerHTML=element.name; 
             
-
-
         })
 
         con.appendChild(retunedDiv);
@@ -406,6 +416,8 @@ document.getElementById('confirmDelete').addEventListener('click' , ()=>{
 //    console.log(JSON.parse(localStorage.getItem('playersLISTE')));
    
    fillDeleteContainer();
+   displayPlayersInFooter(playersData);
+   document.getElementById('deletePlayers').classList.add('hidden');
 })
 
 
@@ -541,6 +553,15 @@ function reloadForm() {
                 selectedCard.classList.add('basis-[10%]');
                 selectedCard.dataset.playerName = element.name;
               console.log(selectedCard);
+              let NtextSize =8; 
+              let mtext=0;
+              if (obj.name.length>=20) {
+  
+                  console.log(obj.name.length);
+                  mtext=4;
+                  NtextSize=6;
+  
+              } 
               
                 selectedCard.innerHTML = `
                     <div class="cardContent">
@@ -555,34 +576,54 @@ function reloadForm() {
                             <div class="w-3/4 flex">
                                 <img class="w-11/12 mt-[2.8%]" src="${element.photo}" alt="${element.name}" draggable="false"/>
                             </div>
+                            //here
                         </div>
-                        <div class="playerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]" style="font-size: 10px; margin-top: 0px; margin-bottom: 0px;">${element.name}</div>
+                        <div class="playerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px; margin-top: 0px; margin-bottom: 0px;">${element.name}</div>
                         <hr class="m-auto w-4/5 border-none" id="firstHR">
                         <div class="bottomContent w-3/4 m-auto flex justify-evenly">
                             <div>
-                                <div class="stat flex justify-center"><span>${element.pace}</span>PAC</div>
-                                <div class="stat flex justify-center"><span>${element.shooting}</span>SHO</div>
-                                <div class="stat flex justify-center"><span>${element.passing}</span>PAS</div>
-                            </div>
-                            <hr class="mt-1 h-10 w-[1px] bg-[#3D341B] border-none">
-                            <div>
-                                <div class="stat flex justify-center"><span>${element.dribbling}</span>DRI</div>
-                                <div class="stat flex justify-center"><span>${element.defending}</span>DEF</div>
-                                <div class="stat flex justify-center"><span>${element.physical}</span>PHY</div>
-                            </div>
+                            <div class="stat flex justify-center "><span class=" text-xsmall">${element.pace}PAC</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.shooting}SHO</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.passing}PAS</span></div>
+                        </div>
+                        <hr class="mt-1 h-6 w-[1px] bg-[#3D341B] border-none">
+                        <div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall" >${element.dribbling}DRI</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.defending}DEF</span></div>
+                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.physical}PHY</span></div>
+                        </div>
                         </div>
                     </div>`;
             }
         }
     });
+    displayPlayersInFooter(playersData);
     
 }
 
-window.onload = () => {
 
-    
+
+
+let footer=document.getElementById('footerDiv');
+
+function displayPlayersInFooter(players) {
+    footer.innerHTML='';
+    players.forEach(player => {
+        // Skip if the player's name exists in the teamSquad array
+        if (teamSquad.includes(player.name)) {
+            console.log(`Skipping player: ${player.name}`);
+            return;
+        }
+        // Create a player card and append it to the footer
+        let card = playerCard(player);
+        footer.appendChild(card);
+    });
+}
+// displayPlayersInFooter(playersData);
+window.onload = () => {
     
     reloadForm();
     changeLayout(teamSquad[0]);
+    displayPlayersInFooter(playersData);
     
 }

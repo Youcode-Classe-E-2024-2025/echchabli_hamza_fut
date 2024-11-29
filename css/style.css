@@ -11,13 +11,18 @@ body{
     height: 100%;
 
     width: 100%;
-    background: url('../resource/d1.jpg') no-repeat center center; 
-    background-size: 100% 160%;
+    background-color: rgba(0, 0, 0, 0.5); 
+  
+    background-image: url('../resource/d1.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-blend-mode: screen;
+    background-size: 100% 200%;
     margin: 0; 
     padding: 0;
 }
 main{
-    margin-top: 40px;
+    margin-top: 20px;
    
 }
 
@@ -28,10 +33,8 @@ main{
     background-size: cover; 
    
 
-    width: 75%;
+    width: 60%;
 
     aspect-ratio: 4.5 / 3;
-
-
 
 } 

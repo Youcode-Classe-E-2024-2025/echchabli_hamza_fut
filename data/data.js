@@ -320,7 +320,7 @@ export const players =  [
       physical: 63
     },
     {
-      name: "T.Alexander-Arnold",
+      name: "T.A-Arnold",
       photo: "https://cdn.sofifa.net/players/231/281/25_120.png",
       position: "RB",
       nationality: "England",

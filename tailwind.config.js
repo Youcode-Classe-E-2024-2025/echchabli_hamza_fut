@@ -6,7 +6,11 @@ module.exports = {
     './js/script.js',   
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        xsmall: '6px', // Define your custom small text size
+      },
+    },
   },
   plugins: [
     require('tailwind-scrollbar'),
