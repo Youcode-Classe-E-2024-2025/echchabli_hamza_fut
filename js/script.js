@@ -1,6 +1,6 @@
 import { players } from "../data/data.js";
 
-localStorage.clear();
+// localStorage.clear();
 
 let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
 
