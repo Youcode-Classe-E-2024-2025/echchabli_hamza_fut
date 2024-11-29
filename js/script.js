@@ -1,6 +1,6 @@
 import { players } from "../data/data.js";
 
-// localStorage.clear();
+localStorage.clear();
 
 let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
 
@@ -640,7 +640,8 @@ function displayPlayersInFooter(players) {
 
         // Create a player card and append it to the footer
         let card = playerCard(player);
-        card.style.width = '90px';
+        
+        card.style.width = '100px';
         footer.appendChild(card);
     });
 }

@@ -651,6 +651,10 @@ video {
   margin-top: 2.8%;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .flex {
   display: flex;
 }
@@ -1201,6 +1205,10 @@ video {
 
   .max-800\:block {
     display: block;
+  }
+
+  .max-800\:h-40 {
+    height: 10rem;
   }
 
   .max-800\:w-fit {
