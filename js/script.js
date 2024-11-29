@@ -60,14 +60,21 @@ document.getElementById('formation').addEventListener('change', function () {
 
             let container = document.createElement('div');
             container.className='wrapper';
-            let NtextSize =8; 
+            let NtextSize =10; 
             let mtext=0;
-            if (obj.name.length>=20) {
+            console.log('fix size');
+            
+            if (obj.name.length>=12 && obj.name.length<18) {
 
-                console.log(obj.name.length);
-                mtext=4;
+                console.log('name' ,obj.name.length);
+                mtext=2;
+                NtextSize=8;
+
+            }else if(obj.name.length>=18){
+
+                console.log('name' , obj.name.length);
+                mtext=2;
                 NtextSize=6;
-
             } 
 
            
@@ -215,12 +222,19 @@ function rightSidePlayers() {
         retunedDiv.addEventListener('click', function () {
             let NtextSize =10; 
             let mtext=0;
-            if (element.name.length>=20) {
+            console.log('fix size');
+            
+            if (element.name.length>=12 && element.name.length<18) {
 
-                console.log(element.name.length);
-                mtext=4;
+                console.log('name' ,element.name.length);
+                mtext=2;
+                NtextSize=8;
+
+            }else if(element.name.length>=18){
+
+                console.log('name' , element.name.length);
+                mtext=2;
                 NtextSize=6;
-
             } 
           
             teamSquad[cardNum]=element.name;
@@ -553,14 +567,21 @@ function reloadForm() {
                 selectedCard.classList.add('basis-[10%]');
                 selectedCard.dataset.playerName = element.name;
               console.log(selectedCard);
-              let NtextSize =8; 
+              let NtextSize =10; 
               let mtext=0;
-              if (obj.name.length>=20) {
+              console.log('fix size');
+              
+              if (element.name.length>=12 && element.name.length<18) {
   
-                  console.log(obj.name.length);
-                  mtext=4;
+                  console.log('name' ,element.name.length);
+                  mtext=2;
+                  NtextSize=8;
+  
+              }else if(element.name.length>=18){
+  
+                  console.log('name' , element.name.length);
+                  mtext=2;
                   NtextSize=6;
-  
               } 
               
                 selectedCard.innerHTML = `
