@@ -930,6 +930,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -944,10 +948,6 @@ video {
 
 .p-7 {
   padding: 1.75rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .px-2 {
@@ -1067,14 +1067,6 @@ video {
 .placeholder-\[\#ABA6A6\]::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(171 166 166 / var(--tw-placeholder-opacity, 1));
-}
-
-.bg-blend-screen {
-  background-blend-mode: screen;
-}
-
-.bg-blend-overlay {
-  background-blend-mode: overlay;
 }
 
 .filter {

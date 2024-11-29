@@ -1,6 +1,6 @@
 import { players } from "../data/data.js";
 
-localStorage.clear();
+// localStorage.clear();
 
 let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
 
@@ -594,10 +594,10 @@ function reloadForm() {
                                 <div class="flex justify-center w-full"><img class="w-3/6" src="${element.flag}" alt="${element.nationality}" draggable="false"/></div>
                                 <div class="flex justify-center w-full"><img class="w-3/6" src="${element.logo}" alt="${element.club}" draggable="false"/></div>
                             </div>
-                            <div class="w-3/4 flex">
-                                <img class="w-11/12 mt-[2.8%]" src="${element.photo}" alt="${element.name}" draggable="false"/>
-                            </div>
-                            //here
+                             <div class="w-3/4 flex">
+                            <img class="w-11/12 mt-[2.8%]" src="${element.photo}" alt="${element.name}" draggable="false"/>
+                        </div>
+                           
                         </div>
                         <div class="playerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px; margin-top: 0px; margin-bottom: 0px;">${element.name}</div>
                         <hr class="m-auto w-4/5 border-none" id="firstHR">
@@ -631,12 +631,16 @@ function displayPlayersInFooter(players) {
     footer.innerHTML='';
     players.forEach(player => {
         // Skip if the player's name exists in the teamSquad array
+
         if (teamSquad.includes(player.name)) {
             console.log(`Skipping player: ${player.name}`);
             return;
         }
+        
+
         // Create a player card and append it to the footer
         let card = playerCard(player);
+        card.style.width = '90px';
         footer.appendChild(card);
     });
 }
