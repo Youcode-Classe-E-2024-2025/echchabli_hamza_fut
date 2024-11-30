@@ -8,8 +8,10 @@ let teamSquad= JSON.parse(localStorage.getItem('current11')) || ['433' , null ,n
 console.log('fromStorage' , teamSquad);
 
 let value;
+
+//change the formation
 document.getElementById('formation').addEventListener('change', function () {
-     value = this.value; // Get the selected option's value
+     value = this.value;
     teamSquad[0]=value;
     localStorage.setItem('current11', JSON.stringify(teamSquad));
     console.log(JSON.parse(localStorage.getItem('current11')));
@@ -52,9 +54,11 @@ document.getElementById('formation').addEventListener('change', function () {
             newDefenceDivs.forEach(div => document.getElementById('defence').appendChild(div));
             newMiddleDivs.forEach(div => document.getElementById('middle').appendChild(div));
             newAttackDivs.forEach(div => document.getElementById('attack').appendChild(div));
-            // console.log(teamSquad);
+          
         }
        
+
+        // return full card 
 
         function playerCard( obj ) {
 
@@ -85,7 +89,7 @@ document.getElementById('formation').addEventListener('change', function () {
                 <div class="topContent w-full h-fit flex">
                     <div class="w-1/4 flex flex-col flexGapStat justify-center  content-center">
                         <div class="flex justify-center h-fit ratingText mbFlag">${obj.rating}</div>
-                        <div class="flex justify-center h-fit textSIZE mbFlag">ST</div>
+                        <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
                         <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="Portugal" draggable="false"></div>
                         <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.logo}" alt="Al Nassr" draggable="false"></div>
                     </div>
@@ -116,74 +120,9 @@ document.getElementById('formation').addEventListener('change', function () {
 
             
         }
-        // function smallPlayerCard( obj ) {
+        
 
-        //     let container = document.createElement('div');
-        //     container.className='wrapper';
-        //     let NtextSize =8; 
-        //     let mtext=0;
-        //     let samllText=7;
-        //     if (obj.name.length>=20) {
-
-        //         console.log(obj.name.length);
-        //         mtext=4;
-        //         NtextSize=6;
-
-        //     } 
-
-        //     container.style.width='70px';
-
-        //     container.innerHTML=`
-        //     <div class="cardContent">
-        //     <div class="h-[10%]"></div>
-        //     <div class="topContent w-full h-fit flex">
-        //         <div class="w-1/4   flex flex-col flexGapStat  justify-center gap-1 content-center ">
-        //           <div class="flex justify-center h-fit  ratingText mbFlag">${obj.rating}</div>
-        //           <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
-        //           <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="${obj.nationality}" draggable="false"/></div>
-        //           <div class="flex justify-center w-full "><img class="w-3/6" src="${obj.logo}" alt="${obj.club}" draggable="false"/></div>
-        //         </div>
-                
-        //         <div class="w-3/4 flex"><img class=" w-11/12  mt-[2.8%] " src="${obj.photo}" alt="${obj.name}" draggable="false"/>
-        //         </div>
-        //       </div>
-
-
-
-        //       <div class="playerName w-full h-fit  flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${obj.name}</div>
-        //       <hr class="m-auto w-4/5 border-none " id="firstHR">
-        //       <div class="bottomContent w-3/4  m-auto flex justify-evenly">
-        //         <div class="  ">
-        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.pace}PAC</span></div>
-        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.shooting}SHO</span></div>
-        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.passing}PAS</span></div>
-        //         </div>
-        //         <hr class=  " mt-1 h-10  w-[1px] bg-[#3D341B] border-none" >
-        //         <div class="  ">
-        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.dribbling}DRI</span></div>
-        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.defending}DEF</span></div>
-        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.physical}PHY</span></div>
-        //         </div>
-        //       </div>
-        //       </div>
-            
-            
-        //     `
-        //     return container ;
-
-            
-        // }
-
-        function emptyCard() {
-            let container = document.createElement('div');
-            container.classList.add('Wrapper', 'flex', 'justify-center', 'text-4xl', 'text-white', 'cursor-pointer');
-
-            container.innerHTML=`+` ;
-
-            return container ;
-
-            
-        }
+       //set event to the formation  card to for adding  changing player  
   
 let selectedCard = null; 
 let cardNum =null;
@@ -205,6 +144,7 @@ function setEvent() {
 }
 
 
+//display the players card in a popUp rightPlayersDisplay
 
 function rightSidePlayers() {
     let liste = playersData;
@@ -218,6 +158,7 @@ function rightSidePlayers() {
         let retunedDiv = playerCard(element);
         retunedDiv.classList.add('cursor-pointer');
         retunedDiv.style.height="fit-content";
+        
 
           
         retunedDiv.addEventListener('click', function () {
@@ -231,6 +172,7 @@ function rightSidePlayers() {
                let x=selectedCard.parentNode;
                let newCard= playerCard(element) ;
                newCard.role=Pposition;
+               newCard.setAttribute('data-card-number', cardNum);
                
                x.replaceChild(newCard,selectedCard);
 
@@ -253,30 +195,34 @@ function rightSidePlayers() {
 }
 
 
+
 document.getElementById('closePlayerEdit').addEventListener('click', function () {
    
     document.getElementById('rightPlayers').classList.add('hidden');
 });
 
 
+// to remove player from the formation
 
 document.getElementById('removePlayer').addEventListener('click' , ()=>{
 
 
     let cardContent = document.querySelector('[data-card-number="'+cardNum+'"]');
     
+    // removeing the player from the teamSquad
 
     teamSquad = teamSquad.map(item => {
-        const playerName = selectedCard.getAttribute('data-player-name'); // Get the data-player-name attribute
-        console.log(item, 'test', playerName);
+        const playerName = selectedCard.getAttribute('data-player-name'); 
+        
     
-        if (item === playerName) { // Compare item.name with the attribute value
-            return null; // Replace the matching item with null
+        if (item === playerName) { 
+            return null;
         }
-        return item; // Keep the item if it doesn't match
+        return item; 
     });
+
         localStorage.setItem('current11', JSON.stringify(teamSquad));
-        // console.log(JSON.parse(localStorage.getItem('current11')));
+        
 
          
     
@@ -284,10 +230,11 @@ document.getElementById('removePlayer').addEventListener('click' , ()=>{
     cardContent.innerHTML=`
      <div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+`+Pposition+`</div>
     `;
-    console.log(cardContent);
+    
     document.getElementById('rightPlayers').classList.add('hidden');
     
     displayPlayersInFooter(playersData);
+    rightSidePlayers();
 
 }
 
@@ -300,135 +247,18 @@ document.getElementById('addBtn').addEventListener('click' , ()=>{
     document.getElementById('playerFormContainer').classList.remove('hidden');
 })
 
-document.getElementById('addFormClose').addEventListener('click' , ()=>{
+document.getElementById('addFormClose').addEventListener('click' , (event)=>{
+    event.preventDefault();
     document.getElementById('playerFormContainer').classList.add('hidden');
 })
 
-// Add an event listener to handle form submission
-// document.getElementById('playerForm').addEventListener('submit', function (event) {
-//     // Prevent the default form submission behavior
-//     event.preventDefault();
 
-//     // Retrieve form values
-//     const playerData = {
-//         name: this.elements[0].value,
-//         photo: this.elements[1].value,
-//         position: this.elements[2].value,
-//         nationality: this.elements[3].value,
-//         flag: this.elements[4].value,
-//         club: this.elements[5].value,
-//         logo: this.elements[6].value,
-//         rating: parseInt(this.elements[7].value),
-//         pace: parseInt(this.elements[8].value),
-//         shooting: parseInt(this.elements[9].value),
-//         passing: parseInt(this.elements[10].value),
-//         dribbling: parseInt(this.elements[11].value),
-//         defending: parseInt(this.elements[12].value),
-//         physical: parseInt(this.elements[13].value),
-//     };
-    
-//     playersData.push(playerData);
-    
-//     console.log('test' , playersData);
-    
-    
-//     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
-//     // console.log(JSON.parse(localStorage.getItem('playersLISTE')));
-    
-
-
-    
-
-
-//     // Optional: Hide the form after submission
-//     document.getElementById('playerFormContainer').classList.add('hidden');
-//     rightSidePlayers();
-//     displayPlayersInFooter(playersData);
-// });
-
-
-// document.getElementById('playerForm').addEventListener('submit', function (event) {
-//     // Prevent the default form submission behavior
-//     event.preventDefault();
-
-//     // Retrieve form values
-//     const playerData = {
-//         name: this.elements[0].value.trim(),
-//         photo: this.elements[1].value.trim(),
-//         position: this.elements[2].value.trim(),
-//         nationality: this.elements[3].value.trim(),
-//         flag: this.elements[4].value.trim(),
-//         club: this.elements[5].value.trim(),
-//         logo: this.elements[6].value.trim(),
-//         rating: parseInt(this.elements[7].value),
-//         pace: parseInt(this.elements[8].value),
-//         shooting: parseInt(this.elements[9].value),
-//         passing: parseInt(this.elements[10].value),
-//         dribbling: parseInt(this.elements[11].value),
-//         defending: parseInt(this.elements[12].value),
-//         physical: parseInt(this.elements[13].value),
-//     };
-
-//     // Validation
-//     function isUrl(url) {
-//         return url.startsWith('http://') || url.startsWith('https://');
-//     }
-    
-//     function isInRange(value, min, max) {
-//         return value >= min && value <= max;
-//     }
-
-//     if (!isUrl(playerData.photo)) {
-//         alert("Photo URL must be valid and start with 'https://'");
-//         return;
-//     }
-
-//     if (!isUrl(playerData.flag)) {
-//         alert("Flag URL must be valid and start with 'https://'");
-//         return;
-//     }
-
-//     if (!isUrl(playerData.logo)) {
-//         alert("Club Logo URL must be valid and start with 'https://'");
-//         return;
-//     }
-
-//     const stats = [
-//         { name: "Rating", value: playerData.rating },
-//         { name: "Pace", value: playerData.pace },
-//         { name: "Shooting", value: playerData.shooting },
-//         { name: "Passing", value: playerData.passing },
-//         { name: "Dribbling", value: playerData.dribbling },
-//         { name: "Defending", value: playerData.defending },
-//         { name: "Physical", value: playerData.physical },
-//     ];
-
-//     for (const stat of stats) {
-//         if (!isInRange(stat.value, 1, 100)) {
-//             alert(`${stat.name} must be a number between 1 and 100.`);
-//             return;
-//         }
-//     }
-
-//     // If validation passes, save data and perform actions
-//     playersData.push(playerData);
-//     console.log('Player Data:', playersData);
-
-//     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
-
-//     // Optional: Hide the form after submission
-//     document.getElementById('playerFormContainer').classList.add('hidden');
-
-//     // Call additional functions
-//     rightSidePlayers();
-//     displayPlayersInFooter(playersData);
-// });
+// get the data from the form and checking it 
 
 document.getElementById('playerForm').addEventListener('submit', function (event) {
-    // Prevent the default form submission behavior
+    
     event.preventDefault();
 
-    // Retrieve form values
     const playerData = {
         name: this.elements[0].value.trim(),
         photo: this.elements[1].value.trim(),
@@ -446,7 +276,6 @@ document.getElementById('playerForm').addEventListener('submit', function (event
         physical: parseInt(this.elements[13].value),
     };
 
-    // Validation Functions
     function isUrl(url) {
         return url.startsWith('http://') || url.startsWith('https://');
     }
@@ -505,20 +334,21 @@ document.getElementById('playerForm').addEventListener('submit', function (event
         }
     }
 
-    // If validation passes, save data and perform actions
+    
     playersData.push(playerData);
-    console.log('Player Data:', playersData);
+    
 
     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
 
-    // Optional: Hide the form after submission
+    
     document.getElementById('playerFormContainer').classList.add('hidden');
 
-    // Call additional functions
     rightSidePlayers();
     displayPlayersInFooter(playersData);
 });
 
+
+// to fill the delete popUp
 
 function fillDeleteContainer() { 
 
@@ -549,12 +379,12 @@ document.getElementById('deleteBtn').addEventListener('click' , ()=>{
 
 document.getElementById('confirmDelete').addEventListener('click' , ()=>{
    let res = document.getElementById('deletePlayerName').textContent;
-//    console.log(res);
+
    
    playersData=playersData.filter(item => item.name!==res);
    localStorage.setItem('playersLISTE', JSON.stringify(playersData));
 
-//    console.log(JSON.parse(localStorage.getItem('playersLISTE')));
+
    
    fillDeleteContainer();
    displayPlayersInFooter(playersData);
@@ -562,15 +392,7 @@ document.getElementById('confirmDelete').addEventListener('click' , ()=>{
 })
 
 
-// document.getElementById('updateBtn').addEventListener('click' , ()=>{
-//      document.getElementById('updatePlayerContainer').classList.remove('hidden');
-// })
-   
-
-document.getElementById('updateFormClose').addEventListener('click' , ()=>{
-    document.getElementById('updatePlayerContainer').classList.add('hidden');
-
-})
+// fill the update the popUP 
 
 let target=null ;
 
@@ -597,8 +419,11 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
     });
 })
 
+
+ // fill the update form with the existing data before editing     
+
 function fillForm(name) {
-    // Find the player object by name
+   
     let obj = playersData.find(item => item.name === name);
     console.log('fill' , obj);
     
@@ -625,48 +450,120 @@ function fillForm(name) {
     }
 }
 
+// checking the data and changing it in the database
 
 document.getElementById('updatePlayerForm').addEventListener('submit', function (event) {
- 
-    // Prevent the default form submission behavior
+    
     event.preventDefault();
-     
-    // Retrieve form values
+
+    function isUrl(url) {
+        return url.startsWith('http://') || url.startsWith('https://');
+    }
+
+    function isInRange(value, min, max) {
+        return value >= min && value <= max;
+    }
+
     const playerData = {
-        position: this.elements[0].value,   
-        nationality: this.elements[1].value, 
-        flag: this.elements[2].value,       
-        club: this.elements[3].value,     
-        logo: this.elements[4].value,        
-        rating: parseInt(this.elements[5].value),       
-        shooting: parseInt(this.elements[7].value),  
-        passing: parseInt(this.elements[8].value),  
+        position: this.elements[0].value.trim(),
+        nationality: this.elements[1].value.trim(),
+        flag: this.elements[2].value.trim(),
+        club: this.elements[3].value.trim(),
+        logo: this.elements[4].value.trim(),
+        rating: parseInt(this.elements[5].value),
+        pace: parseInt(this.elements[6].value),  
+        shooting: parseInt(this.elements[7].value),
+        passing: parseInt(this.elements[8].value),
         dribbling: parseInt(this.elements[9].value),
         defending: parseInt(this.elements[10].value),
-        physical: parseInt(this.elements[11].value), 
+        physical: parseInt(this.elements[11].value),
     };
+
    
+    if (!playerData.nationality) {
+        alert("Nationality cannot be empty.");
+        return;
+    }
+
+    if (!playerData.club) {
+        alert("Club cannot be empty.");
+        return;
+    }
+
+    if (!isUrl(playerData.flag)) {
+        alert("Flag URL must be valid and start with 'http://' or 'https://'");
+        return;
+    }
+
+    if (!isUrl(playerData.logo)) {
+        alert("Club Logo URL must be valid and start with 'http://' or 'https://'");
+        return;
+    }
+
+    if (!isInRange(playerData.rating, 1, 100)) {
+        alert("Rating must be a number between 1 and 100.");
+        return;
+    }
+
+    if (!isInRange(playerData.pace, 1, 100)) {
+        alert("Pace must be a number between 1 and 100.");
+        return;
+    }
+
+    if (!isInRange(playerData.shooting, 1, 100)) {
+        alert("Shooting must be a number between 1 and 100.");
+        return;
+    }
+
+    if (!isInRange(playerData.passing, 1, 100)) {
+        alert("Passing must be a number between 1 and 100.");
+        return;
+    }
+
+    if (!isInRange(playerData.dribbling, 1, 100)) {
+        alert("Dribbling must be a number between 1 and 100.");
+        return;
+    }
+
+    if (!isInRange(playerData.defending, 1, 100)) {
+        alert("Defending must be a number between 1 and 100.");
+        return;
+    }
+
+    if (!isInRange(playerData.physical, 1, 100)) {
+        alert("Physical must be a number between 1 and 100.");
+        return;
+    }
+
     playersData = playersData.map(element => {
         if (element.name === target) {
             playerData.name = element.name;
             playerData.photo = element.photo;
             return playerData;
         }
-        return element
+        return element;
     });
+
     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
-    console.log('testLocalStorge' , JSON.parse(localStorage.getItem('playersLISTE')));
+    console.log('Updated Local Storage:', JSON.parse(localStorage.getItem('playersLISTE')));
 
-    
-    document.getElementById('updatePlayerContainer').classList.add('hidden');
-   
-});
-
-document.getElementById('updateFormClose').addEventListener('click', function () {
-   
+    fillDeleteContainer();
+   displayPlayersInFooter(playersData);
     document.getElementById('updatePlayerContainer').classList.add('hidden');
 });
 
+
+
+
+
+document.getElementById('updateFormClose').addEventListener('click', function (event) {
+   event.preventDefault();
+   
+    document.getElementById('updatePlayerContainer').classList.add('hidden');
+});
+
+
+//in relaod we take the liste teamsqaud form localstorage and used to display the formation back
 
 function reloadForm() {
     
@@ -703,6 +600,8 @@ function reloadForm() {
     
 }
 
+//  bench players card
+
 function footerPlayerCard(obj) {
     let container = document.createElement('div');
     container.classList.add('footerWrapper');
@@ -716,7 +615,7 @@ function footerPlayerCard(obj) {
             <div class="topContent w-full h-fit flex">
                 <div class="w-1/4 flex flex-col flexGapStat justify-center content-center">
                     <div class="flex justify-center h-fit ratingText mbFlag">${obj.rating}</div>
-                    <div class="flex justify-center h-fit textSIZE mbFlag">ST</div>
+                    <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
                     <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="Portugal" draggable="false"></div>
                     <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.logo}" alt="Al Nassr" draggable="false"></div>
                 </div>
@@ -748,6 +647,7 @@ function footerPlayerCard(obj) {
 }
 
 
+// fill the footer with bench players
 
 let footer=document.getElementById('footerDiv');
 
@@ -768,6 +668,9 @@ function displayPlayersInFooter(players) {
         footer.appendChild(card);
     });
 }
+
+
+// set event , realod formation , display footer players on each reload
 
 window.onload = () => {
     setEvent();
