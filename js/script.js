@@ -305,19 +305,138 @@ document.getElementById('addFormClose').addEventListener('click' , ()=>{
 })
 
 // Add an event listener to handle form submission
+// document.getElementById('playerForm').addEventListener('submit', function (event) {
+//     // Prevent the default form submission behavior
+//     event.preventDefault();
+
+//     // Retrieve form values
+//     const playerData = {
+//         name: this.elements[0].value,
+//         photo: this.elements[1].value,
+//         position: this.elements[2].value,
+//         nationality: this.elements[3].value,
+//         flag: this.elements[4].value,
+//         club: this.elements[5].value,
+//         logo: this.elements[6].value,
+//         rating: parseInt(this.elements[7].value),
+//         pace: parseInt(this.elements[8].value),
+//         shooting: parseInt(this.elements[9].value),
+//         passing: parseInt(this.elements[10].value),
+//         dribbling: parseInt(this.elements[11].value),
+//         defending: parseInt(this.elements[12].value),
+//         physical: parseInt(this.elements[13].value),
+//     };
+    
+//     playersData.push(playerData);
+    
+//     console.log('test' , playersData);
+    
+    
+//     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
+//     // console.log(JSON.parse(localStorage.getItem('playersLISTE')));
+    
+
+
+    
+
+
+//     // Optional: Hide the form after submission
+//     document.getElementById('playerFormContainer').classList.add('hidden');
+//     rightSidePlayers();
+//     displayPlayersInFooter(playersData);
+// });
+
+
+// document.getElementById('playerForm').addEventListener('submit', function (event) {
+//     // Prevent the default form submission behavior
+//     event.preventDefault();
+
+//     // Retrieve form values
+//     const playerData = {
+//         name: this.elements[0].value.trim(),
+//         photo: this.elements[1].value.trim(),
+//         position: this.elements[2].value.trim(),
+//         nationality: this.elements[3].value.trim(),
+//         flag: this.elements[4].value.trim(),
+//         club: this.elements[5].value.trim(),
+//         logo: this.elements[6].value.trim(),
+//         rating: parseInt(this.elements[7].value),
+//         pace: parseInt(this.elements[8].value),
+//         shooting: parseInt(this.elements[9].value),
+//         passing: parseInt(this.elements[10].value),
+//         dribbling: parseInt(this.elements[11].value),
+//         defending: parseInt(this.elements[12].value),
+//         physical: parseInt(this.elements[13].value),
+//     };
+
+//     // Validation
+//     function isUrl(url) {
+//         return url.startsWith('http://') || url.startsWith('https://');
+//     }
+    
+//     function isInRange(value, min, max) {
+//         return value >= min && value <= max;
+//     }
+
+//     if (!isUrl(playerData.photo)) {
+//         alert("Photo URL must be valid and start with 'https://'");
+//         return;
+//     }
+
+//     if (!isUrl(playerData.flag)) {
+//         alert("Flag URL must be valid and start with 'https://'");
+//         return;
+//     }
+
+//     if (!isUrl(playerData.logo)) {
+//         alert("Club Logo URL must be valid and start with 'https://'");
+//         return;
+//     }
+
+//     const stats = [
+//         { name: "Rating", value: playerData.rating },
+//         { name: "Pace", value: playerData.pace },
+//         { name: "Shooting", value: playerData.shooting },
+//         { name: "Passing", value: playerData.passing },
+//         { name: "Dribbling", value: playerData.dribbling },
+//         { name: "Defending", value: playerData.defending },
+//         { name: "Physical", value: playerData.physical },
+//     ];
+
+//     for (const stat of stats) {
+//         if (!isInRange(stat.value, 1, 100)) {
+//             alert(`${stat.name} must be a number between 1 and 100.`);
+//             return;
+//         }
+//     }
+
+//     // If validation passes, save data and perform actions
+//     playersData.push(playerData);
+//     console.log('Player Data:', playersData);
+
+//     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
+
+//     // Optional: Hide the form after submission
+//     document.getElementById('playerFormContainer').classList.add('hidden');
+
+//     // Call additional functions
+//     rightSidePlayers();
+//     displayPlayersInFooter(playersData);
+// });
+
 document.getElementById('playerForm').addEventListener('submit', function (event) {
     // Prevent the default form submission behavior
     event.preventDefault();
 
     // Retrieve form values
     const playerData = {
-        name: this.elements[0].value,
-        photo: this.elements[1].value,
-        position: this.elements[2].value,
-        nationality: this.elements[3].value,
-        flag: this.elements[4].value,
-        club: this.elements[5].value,
-        logo: this.elements[6].value,
+        name: this.elements[0].value.trim(),
+        photo: this.elements[1].value.trim(),
+        position: this.elements[2].value.trim(),
+        nationality: this.elements[3].value.trim(),
+        flag: this.elements[4].value.trim(),
+        club: this.elements[5].value.trim(),
+        logo: this.elements[6].value.trim(),
         rating: parseInt(this.elements[7].value),
         pace: parseInt(this.elements[8].value),
         shooting: parseInt(this.elements[9].value),
@@ -326,25 +445,80 @@ document.getElementById('playerForm').addEventListener('submit', function (event
         defending: parseInt(this.elements[12].value),
         physical: parseInt(this.elements[13].value),
     };
-    
+
+    // Validation Functions
+    function isUrl(url) {
+        return url.startsWith('http://') || url.startsWith('https://');
+    }
+
+    function isInRange(value, min, max) {
+        return value >= min && value <= max;
+    }
+
+    // Validate empty fields
+    if (!playerData.name) {
+        alert("Name cannot be empty.");
+        return;
+    }
+
+    if (!playerData.nationality) {
+        alert("Nationality cannot be empty.");
+        return;
+    }
+
+    if (!playerData.club) {
+        alert("Club cannot be empty.");
+        return;
+    }
+
+    // Validate URLs
+    if (!isUrl(playerData.photo)) {
+        alert("Photo URL must be valid and start with 'http://' or 'https://'");
+        return;
+    }
+
+    if (!isUrl(playerData.flag)) {
+        alert("Flag URL must be valid and start with 'http://' or 'https://'");
+        return;
+    }
+
+    if (!isUrl(playerData.logo)) {
+        alert("Club Logo URL must be valid and start with 'http://' or 'https://'");
+        return;
+    }
+
+    // Validate numeric fields
+    const stats = [
+        { name: "Rating", value: playerData.rating },
+        { name: "Pace", value: playerData.pace },
+        { name: "Shooting", value: playerData.shooting },
+        { name: "Passing", value: playerData.passing },
+        { name: "Dribbling", value: playerData.dribbling },
+        { name: "Defending", value: playerData.defending },
+        { name: "Physical", value: playerData.physical },
+    ];
+
+    for (const stat of stats) {
+        if (!isInRange(stat.value, 1, 100)) {
+            alert(`${stat.name} must be a number between 1 and 100.`);
+            return;
+        }
+    }
+
+    // If validation passes, save data and perform actions
     playersData.push(playerData);
-    
-    console.log('test' , playersData);
-    
-    
+    console.log('Player Data:', playersData);
+
     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
-    // console.log(JSON.parse(localStorage.getItem('playersLISTE')));
-    
-
-
-    
-
 
     // Optional: Hide the form after submission
     document.getElementById('playerFormContainer').classList.add('hidden');
+
+    // Call additional functions
     rightSidePlayers();
     displayPlayersInFooter(playersData);
 });
+
 
 function fillDeleteContainer() { 
 
