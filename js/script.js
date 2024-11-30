@@ -59,141 +59,138 @@ document.getElementById('formation').addEventListener('change', function () {
         function playerCard( obj ) {
 
             let container = document.createElement('div');
-            container.className='wrapper';
-            let NtextSize =10; 
+            container.classList.add('wrapper');
+            let NtextSize =9; 
             let mtext=0;
-            console.log('fix size');
+            // console.log('fix size');
             
             if (obj.name.length>=12 && obj.name.length<18) {
 
-                console.log('name' ,obj.name.length);
+                // console.log('name' ,obj.name.length);
                 mtext=2;
                 NtextSize=8;
 
             }else if(obj.name.length>=18){
 
-                console.log('name' , obj.name.length);
+                // console.log('name' , obj.name.length);
                 mtext=2;
                 NtextSize=6;
             } 
 
-           
-
+           container.dataset.playerName = obj.name ;
+           container.dataset.test = 'not' ;
             container.innerHTML=`
-            <div class="cardContent">
-            <div class="h-[10%]"></div>
-            <div class="topContent w-full h-fit flex">
-                <div class="w-1/4   flex flex-col flexGapStat  justify-center gap-1 content-center ">
-                  <div class="flex justify-center h-fit  ratingText mbFlag">${obj.rating}</div>
-                  <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
-                  <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="${obj.nationality}" draggable="false"/></div>
-                  <div class="flex justify-center w-full "><img class="w-3/6" src="${obj.logo}" alt="${obj.club}" draggable="false"/></div>
+             <div class="cardContent">
+                <div class="h-[10%]"></div>
+                <div class="topContent w-full h-fit flex">
+                    <div class="w-1/4 flex flex-col flexGapStat justify-center  content-center">
+                        <div class="flex justify-center h-fit ratingText mbFlag">${obj.rating}</div>
+                        <div class="flex justify-center h-fit textSIZE mbFlag">ST</div>
+                        <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="Portugal" draggable="false"></div>
+                        <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.logo}" alt="Al Nassr" draggable="false"></div>
+                    </div>
+                     <div class="w-3/4 flex">
+                    <img class="playerPhoto  m-auto" src="${obj.photo}" alt="Cristiano Ronaldo" draggable="false">
                 </div>
-                
-                <div class="w-3/4 flex"><img class=" w-11/12  mt-[2.8%] " src="${obj.photo}" alt="${obj.name}" draggable="false"/>
+                   
                 </div>
-              </div>
-
-
-
-              <div class="playerName w-full h-fit  flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${obj.name}</div>
-              <hr class="m-auto w-4/5 border-none " id="firstHR">
-              <div class="bottomContent w-3/4  m-auto flex justify-evenly">
-                <div class="  ">
-                    <div class="stat flex justify-center "><span>${obj.pace}</span>PAC</div>
-                    <div class="stat flex justify-center "><span>${obj.shooting}</span>SHO</div>
-                    <div class="stat flex justify-center "><span>${obj.passing}</span>PAS</div>
+                <div class="playerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]" >${obj.name}</div>
+                <hr class="m-auto w-4/5 border-none" id="firstHR">
+                <div class="bottomContent w-3/4 m-auto flex justify-evenly">
+                    <div>
+                    <div class="stat flex justify-center "><span class="statText ">${obj.pace}PAC</span></div>
+                    <div class="stat flex justify-center "><span class="statText ">${obj.shooting}SHO</span></div>
+                    <div class="stat flex justify-center "><span class="statText ">${obj.passing}PAS</span></div>
                 </div>
-                <hr class=  " mt-1 h-10  w-[1px] bg-[#3D341B] border-none" >
-                <div class="  ">
-                    <div class="stat flex justify-center "><span>${obj.dribbling}</span>DRI</div>
-                    <div class="stat flex justify-center "><span>${obj.defending}</span>DEF</div>
-                    <div class="stat flex justify-center "><span>${obj.physical}</span>PHY</div>
+                <hr class="mt-1 h-6 w-[1px] bg-[#3D341B] border-none">
+                <div>
+                    <div class="stat flex justify-center "><span class="statText ">${obj.dribbling}DRI</span></div>
+                    <div class="stat flex justify-center "><span class="statText ">${obj.defending}DEF</span></div>
+                    <div class="stat flex justify-center "><span class="statText ">${obj.physical}PHY</span></div>
                 </div>
-              </div>
-              </div>
+                </div>
+            </div>
             
-            
-            `
+            `;
             return container ;
 
             
         }
-        function smallPlayerCard( obj ) {
+        // function smallPlayerCard( obj ) {
 
-            let container = document.createElement('div');
-            container.className='wrapper';
-            let NtextSize =8; 
-            let mtext=0;
-            let samllText=7;
-            if (obj.name.length>=20) {
-
-                console.log(obj.name.length);
-                mtext=4;
-                NtextSize=6;
-
-            } 
-
-           
-
-            container.innerHTML=`
-            <div class="cardContent">
-            <div class="h-[10%]"></div>
-            <div class="topContent w-full h-fit flex">
-                <div class="w-1/4   flex flex-col flexGapStat  justify-center gap-1 content-center ">
-                  <div class="flex justify-center h-fit  ratingText mbFlag">${obj.rating}</div>
-                  <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
-                  <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="${obj.nationality}" draggable="false"/></div>
-                  <div class="flex justify-center w-full "><img class="w-3/6" src="${obj.logo}" alt="${obj.club}" draggable="false"/></div>
-                </div>
-                
-                <div class="w-3/4 flex"><img class=" w-11/12  mt-[2.8%] " src="${obj.photo}" alt="${obj.name}" draggable="false"/>
-                </div>
-              </div>
-
-
-
-              <div class="playerName w-full h-fit  flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${obj.name}</div>
-              <hr class="m-auto w-4/5 border-none " id="firstHR">
-              <div class="bottomContent w-3/4  m-auto flex justify-evenly">
-                <div class="  ">
-                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.pace}PAC</span></div>
-                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.shooting}SHO</span></div>
-                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.passing}PAS</span></div>
-                </div>
-                <hr class=  " mt-1 h-10  w-[1px] bg-[#3D341B] border-none" >
-                <div class="  ">
-                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.dribbling}DRI</span></div>
-                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.defending}DEF</span></div>
-                    <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.physical}PHY</span></div>
-                </div>
-              </div>
-              </div>
-            
-            
-            `
-            return container ;
-
-            
-        }
-
-        // function emptyCard() {
         //     let container = document.createElement('div');
-        //     container.classList.add('Wrapper', 'flex', 'justify-center', 'text-4xl', 'text-white', 'cursor-pointer');
+        //     container.className='wrapper';
+        //     let NtextSize =8; 
+        //     let mtext=0;
+        //     let samllText=7;
+        //     if (obj.name.length>=20) {
 
-        //     container.innerHTML=`+` ;
+        //         console.log(obj.name.length);
+        //         mtext=4;
+        //         NtextSize=6;
 
+        //     } 
+
+        //     container.style.width='70px';
+
+        //     container.innerHTML=`
+        //     <div class="cardContent">
+        //     <div class="h-[10%]"></div>
+        //     <div class="topContent w-full h-fit flex">
+        //         <div class="w-1/4   flex flex-col flexGapStat  justify-center gap-1 content-center ">
+        //           <div class="flex justify-center h-fit  ratingText mbFlag">${obj.rating}</div>
+        //           <div class="flex justify-center h-fit textSIZE mbFlag">${obj.position}</div>
+        //           <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="${obj.nationality}" draggable="false"/></div>
+        //           <div class="flex justify-center w-full "><img class="w-3/6" src="${obj.logo}" alt="${obj.club}" draggable="false"/></div>
+        //         </div>
+                
+        //         <div class="w-3/4 flex"><img class=" w-11/12  mt-[2.8%] " src="${obj.photo}" alt="${obj.name}" draggable="false"/>
+        //         </div>
+        //       </div>
+
+
+
+        //       <div class="playerName w-full h-fit  flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${obj.name}</div>
+        //       <hr class="m-auto w-4/5 border-none " id="firstHR">
+        //       <div class="bottomContent w-3/4  m-auto flex justify-evenly">
+        //         <div class="  ">
+        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.pace}PAC</span></div>
+        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.shooting}SHO</span></div>
+        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.passing}PAS</span></div>
+        //         </div>
+        //         <hr class=  " mt-1 h-10  w-[1px] bg-[#3D341B] border-none" >
+        //         <div class="  ">
+        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.dribbling}DRI</span></div>
+        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.defending}DEF</span></div>
+        //             <div class="stat flex justify-center"><span style="font-size: ${samllText}px;" >${obj.physical}PHY</span></div>
+        //         </div>
+        //       </div>
+        //       </div>
+            
+            
+        //     `
         //     return container ;
 
             
         // }
+
+        function emptyCard() {
+            let container = document.createElement('div');
+            container.classList.add('Wrapper', 'flex', 'justify-center', 'text-4xl', 'text-white', 'cursor-pointer');
+
+            container.innerHTML=`+` ;
+
+            return container ;
+
+            
+        }
   
 let selectedCard = null; 
 let cardNum =null;
 let Pposition =null ; 
 
-
-document.querySelectorAll('.wrapper').forEach(card => {
+function setEvent() {
+    document.querySelectorAll('.wrapper').forEach(card => {
     card.addEventListener('click', function () {
 
         selectedCard = this;
@@ -205,86 +202,42 @@ document.querySelectorAll('.wrapper').forEach(card => {
         document.getElementById('rightPlayers').classList.remove('hidden'); 
     });
 });
+}
+
 
 
 function rightSidePlayers() {
     let liste = playersData;
     document.getElementById('rightPlayersDisplay').innerHTML='';
-   
+    console.log(Pposition);
+    
     let filteredRes=liste.filter(item => item.position == Pposition);
-    let res = filteredRes.filter(obj => !teamSquad.includes(obj.name));  // console.log(res);
+    let res = filteredRes.filter(obj => !teamSquad.includes(obj.name)); 
     
     res.forEach(element => {
         let retunedDiv = playerCard(element);
-        retunedDiv.classList.add('cursor-pointer' ,'basis-[15%]');
+        retunedDiv.classList.add('cursor-pointer');
+        retunedDiv.style.height="fit-content";
 
           
         retunedDiv.addEventListener('click', function () {
-            let NtextSize =10; 
-            let mtext=0;
-            console.log('fix size');
-            
-            if (element.name.length>=12 && element.name.length<18) {
-
-                console.log('name' ,element.name.length);
-                mtext=2;
-                NtextSize=8;
-
-            }else if(element.name.length>=18){
-
-                console.log('name' , element.name.length);
-                mtext=2;
-                NtextSize=6;
-            } 
+           
+           
           
             teamSquad[cardNum]=element.name;
             localStorage.setItem('current11', JSON.stringify(teamSquad));
+
             console.log(JSON.parse(localStorage.getItem('current11')));
-    
+               let x=selectedCard.parentNode;
+               let newCard= playerCard(element) ;
+               newCard.role=Pposition;
+               
+               x.replaceChild(newCard,selectedCard);
 
-            if (selectedCard){
-                selectedCard.classList.remove('flex');
-                selectedCard.classList.remove('basis-[15%]');
-                selectedCard.classList.add('basis-[10%]');
-                selectedCard.dataset.playerName = element.name ;
+           
+               setEvent();
+            document.getElementById('rightPlayers').classList.add('hidden');
 
-                selectedCard.innerHTML = `
-                <div class="cardContent">
-                   <div class="h-[10%]"></div>
-                    <div class="topContent w-full h-fit flex">
-                        <div class="w-1/4 flex flex-col flexGapStat justify-center gap-1 content-center">
-                            <div class="flex justify-center h-fit ratingText mbFlag">${element.rating}</div>
-                            <div class="flex justify-center h-fit textSIZE mbFlag">${element.position}</div>
-                            <div class="flex justify-center w-full"><img class="w-3/6" src="${element.flag}" alt="${element.nationality}" draggable="false"/></div>
-                            <div class="flex justify-center w-full"><img class="w-3/6" src="${element.logo}" alt="${element.club}" draggable="false"/></div>
-                        </div>
-                        <div class="w-3/4 flex">
-                            <img class="w-11/12 mt-[2.8%]" src="${element.photo}" alt="${element.name}" draggable="false"/>
-                        </div>
-                    </div>
-                    <div class="playerName w-full h-fit nameSIZE flex justify-center items-center  text-[#FFD700]" style="font-size: ${NtextSize}px;  margin-top:${mtext}px ; margin-bottom: ${mtext}px;">${element.name}</div>
-                    <hr class="m-auto w-4/5 border-none" id="firstHR">
-                    <div class="bottomContent w-3/4 m-auto flex justify-evenly">
-                         <div class="bottomContent w-3/4 m-auto flex justify-evenly">
-                            <div>
-                            <div class="stat flex justify-center "><span class=" text-xsmall">${element.pace}PAC</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.shooting}SHO</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.passing}PAS</span></div>
-                        </div>
-                        <hr class="mt-1 h-6 w-[1px] bg-[#3D341B] border-none">
-                        <div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall" >${element.dribbling}DRI</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.defending}DEF</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.physical}PHY</span></div>
-                        </div>
-                    </div>
-                    </div>
-                `;
-                // console.log(teamSquad);
-
-                document.getElementById('rightPlayers').classList.add('hidden');
-                selectedCard = null; 
-            }
             displayPlayersInFooter(playersData);
         });
 
@@ -293,9 +246,9 @@ function rightSidePlayers() {
         
     });
 
-    console.log('switch');
     
     
+  
 
 }
 
@@ -337,7 +290,7 @@ document.getElementById('removePlayer').addEventListener('click' , ()=>{
     displayPlayersInFooter(playersData);
 
 }
- 
+
 )
 
 
@@ -399,7 +352,7 @@ function fillDeleteContainer() {
     con.innerHTML='';
     playersData.forEach(element => {
 
-        let retunedDiv = smallPlayerCard(element);
+        let retunedDiv = playerCard(element);
         retunedDiv.classList.add('cursor-pointer');
 
         retunedDiv.addEventListener('click' , function () {
@@ -452,7 +405,7 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
     document.getElementById('sidePlayersContainer').innerHTML='';
     playersData.forEach(element => {
 
-        let retunedDiv = smallPlayerCard(element);
+        let retunedDiv = playerCard(element);
         retunedDiv.onclick=function() {
             document.getElementById('updatePlayerContainer').classList.remove('hidden');
             target= element.name; 
@@ -564,57 +517,11 @@ function reloadForm() {
                 // Update the card with player data
                 selectedCard.classList.remove('flex');
                 selectedCard.classList.remove('basis-[15%]');
-                selectedCard.classList.add('basis-[10%]');
+                // selectedCard.classList.add('basis-[10%]');
                 selectedCard.dataset.playerName = element.name;
-              console.log(selectedCard);
-              let NtextSize =10; 
-              let mtext=0;
-              console.log('fix size');
               
-              if (element.name.length>=12 && element.name.length<18) {
-  
-                  console.log('name' ,element.name.length);
-                  mtext=2;
-                  NtextSize=8;
-  
-              }else if(element.name.length>=18){
-  
-                  console.log('name' , element.name.length);
-                  mtext=2;
-                  NtextSize=6;
-              } 
               
-                selectedCard.innerHTML = `
-                    <div class="cardContent">
-                        <div class="h-[10%]"></div>
-                        <div class="topContent w-full h-fit flex">
-                            <div class="w-1/4 flex flex-col flexGapStat justify-center gap-1 content-center">
-                                <div class="flex justify-center h-fit ratingText mbFlag">${element.rating}</div>
-                                <div class="flex justify-center h-fit textSIZE mbFlag">${element.position}</div>
-                                <div class="flex justify-center w-full"><img class="w-3/6" src="${element.flag}" alt="${element.nationality}" draggable="false"/></div>
-                                <div class="flex justify-center w-full"><img class="w-3/6" src="${element.logo}" alt="${element.club}" draggable="false"/></div>
-                            </div>
-                             <div class="w-3/4 flex">
-                            <img class="w-11/12 mt-[2.8%]" src="${element.photo}" alt="${element.name}" draggable="false"/>
-                        </div>
-                           
-                        </div>
-                        <div class="playerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]" style="font-size: ${NtextSize}px; margin-top: 0px; margin-bottom: 0px;">${element.name}</div>
-                        <hr class="m-auto w-4/5 border-none" id="firstHR">
-                        <div class="bottomContent w-3/4 m-auto flex justify-evenly">
-                            <div>
-                            <div class="stat flex justify-center "><span class=" text-xsmall">${element.pace}PAC</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.shooting}SHO</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.passing}PAS</span></div>
-                        </div>
-                        <hr class="mt-1 h-6 w-[1px] bg-[#3D341B] border-none">
-                        <div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall" >${element.dribbling}DRI</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.defending}DEF</span></div>
-                            <div class="stat flex justify-center text-xsmall"><span class=" text-xsmall">${element.physical}PHY</span></div>
-                        </div>
-                        </div>
-                    </div>`;
+                selectedCard.innerHTML =playerCard(element).innerHTML;
             }
         }
     });
@@ -645,6 +552,7 @@ function displayPlayersInFooter(players) {
         footer.appendChild(card);
     });
 }
+setEvent();
 // displayPlayersInFooter(playersData);
 window.onload = () => {
     

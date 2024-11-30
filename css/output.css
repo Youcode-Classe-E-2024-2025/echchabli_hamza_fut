@@ -643,16 +643,16 @@ video {
   margin-top: 0.25rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
 
 .mt-\[2\.8\%\] {
   margin-top: 2.8%;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .flex {
@@ -738,6 +738,10 @@ video {
 
 .w-5\/6 {
   width: 83.333333%;
+}
+
+.w-6\/12 {
+  width: 50%;
 }
 
 .w-\[1px\] {

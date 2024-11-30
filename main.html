@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Replace Div</title>
+</head>
+<body>
+    <div id="oDiv">old div</div>
+
+    <div id="oldDiv" class="cursor-pointer">I am the old div</div>
+
+    <div id="dDiv">I am the</div>
+
+    <script>
+        // Get the old div
+        const oldDiv = document.getElementById('oldDiv');
+        const parent = oldDiv.parentNode;
+
+        // Create a new div to replace the old one
+        const newDiv = document.createElement('div');
+        newDiv.textContent = 'I am the new div';
+        newDiv.style.color = 'blue';
+
+        // Add a click event listener to the oldDiv
+        oldDiv.addEventListener('click', function () {
+            parent.replaceChild(newDiv, oldDiv);
+        });
+    </script>
+</body>
+</html>

@@ -400,7 +400,7 @@ export const players =  [
       physical: 84
     },
     {
-      name: "Gianluigi Donnarumma",
+      name: "G. Donnarumma",
       photo: "https://cdn.sofifa.net/players/230/621/25_120.png",
       position: "GK",
       nationality: "Italy",

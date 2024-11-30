@@ -35,6 +35,21 @@ main{
 
     /* width: 60%; */
 
-    /* aspect-ratio: 4.5 / 3; */
+    aspect-ratio: 4.5 / 2.7;
 
 } 
+
+@media (max-width: 800px) {
+    .wrapper {
+        width: 70px;
+    }
+   
+    .statText{
+        font-size: 6px;
+    }
+
+    .playerName{
+        font-size: 8px; 
+    }
+
+}
