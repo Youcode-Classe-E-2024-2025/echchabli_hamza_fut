@@ -655,6 +655,10 @@ video {
   margin-top: 2.8%;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -708,8 +712,8 @@ video {
   width: 25%;
 }
 
-.w-1\/5 {
-  width: 20%;
+.w-1\/6 {
+  width: 16.666667%;
 }
 
 .w-11\/12 {
@@ -718,10 +722,6 @@ video {
 
 .w-3\/4 {
   width: 75%;
-}
-
-.w-3\/5 {
-  width: 60%;
 }
 
 .w-3\/6 {
@@ -738,10 +738,6 @@ video {
 
 .w-5\/6 {
   width: 83.333333%;
-}
-
-.w-6\/12 {
-  width: 50%;
 }
 
 .w-\[1px\] {
@@ -1020,10 +1016,6 @@ video {
   line-height: 1.75rem;
 }
 
-.text-xsmall {
-  font-size: 6px;
-}
-
 .font-bold {
   font-weight: 700;
 }
@@ -1202,30 +1194,48 @@ video {
   --tw-ring-color: rgb(184 184 184 / var(--tw-ring-opacity, 1));
 }
 
+@media (max-width: 950px) {
+  .max-950\:left-\[10\%\] {
+    left: 10%;
+  }
+
+  .max-950\:left-\[1\%\] {
+    left: 1%;
+  }
+
+  .max-950\:top-2 {
+    top: 0.5rem;
+  }
+
+  .max-950\:block {
+    display: block;
+  }
+
+  .max-950\:w-full {
+    width: 100%;
+  }
+
+  .max-950\:w-5\/6 {
+    width: 83.333333%;
+  }
+
+  .max-950\:w-4\/6 {
+    width: 66.666667%;
+  }
+
+  .max-950\:flex-row {
+    flex-direction: row;
+  }
+}
+
 @media (max-width: 800px) {
   .max-800\:left-\[2\%\] {
     left: 2%;
   }
 
-  .max-800\:block {
-    display: block;
-  }
-
-  .max-800\:h-40 {
-    height: 10rem;
-  }
-
   .max-800\:w-fit {
     width: -moz-fit-content;
     width: fit-content;
-  }
-
-  .max-800\:w-full {
-    width: 100%;
-  }
-
-  .max-800\:flex-row {
-    flex-direction: row;
   }
 
   .max-800\:py-0 {
@@ -1241,5 +1251,54 @@ video {
 @media (max-width: 600px) {
   .max-600\:text-tiny {
     font-size: 8px;
+  }
+}
+
+@media (max-width: 470px) {
+  .max-470\:w-fit {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
+  .max-470\:w-auto {
+    width: auto;
+  }
+
+  .max-470\:w-0 {
+    width: 0px;
+  }
+
+  .max-470\:w-px {
+    width: 1px;
+  }
+
+  .max-470\:w-min {
+    width: -moz-min-content;
+    width: min-content;
+  }
+
+  .max-470\:px-\[\] {
+    padding-left: ;
+    padding-right: ;
+  }
+
+  .max-470\:px-\[4\] {
+    padding-left: 4;
+    padding-right: 4;
+  }
+
+  .max-470\:px-\[4\%\] {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+
+  .max-470\:px-\[\%\] {
+    padding-left: %;
+    padding-right: %;
+  }
+
+  .max-470\:px-\[20\%\] {
+    padding-left: 20%;
+    padding-right: 20%;
   }
 }

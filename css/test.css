@@ -1,56 +1,73 @@
 
+
+.footerWrapper{
+    width: 120px;
+    aspect-ratio: 3.2/5.2;
+}
+.footerTextStat{
+    font-size: 11px;
+}
+.footerPlayerName{
+    font-size:12px;
+}
 .wrapper{
    
-    width: 70px;
+    width: 80px;
     aspect-ratio: 3.2/5.2;
 
 }
+
 .statText{
-    font-size: 6px;
+    font-size: 7px;
 }
 
 .playerName{
-    font-size: 8px; 
+    font-size: 9px; 
 }
 .playerPhoto{
     width: 90.666667%;
     /* margin-top: 2.8%; */
 
 }
-@media (min-width: 801px) and (max-width: 1000px) {
-    .wrapper {
-        width: 50px;
-    }
-    .statText{
-        font-size: 4px;
-    }
-    .playerName{
-        font-size: 6px; 
-    }
-}
-
-
-@media (max-width: 800px) {
+@media (min-width: 950px) and (max-width: 1080px) {
     .wrapper {
         width: 70px;
     }
-   
     .statText{
         font-size: 6px;
     }
-
     .playerName{
         font-size: 8px; 
     }
+}
+
+
+@media (max-width: 950px) {
+    .wrapper {
+        width: 80px;
+    }
+   
+    .statText{
+        font-size: 7px;
+    }
+
+    .playerName{
+        font-size: 9px; 
+    }
+    main{
+        margin-top: 5px;
+       
+    }
 
 }
+
 @media (max-width: 700px) {
     .wrapper {
         width: 50px;
     }
    
     .statText{
-        font-size: 4px;
+        font-size: 4.5px;
     }
     .playerName{
         font-size: 6px; 

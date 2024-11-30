@@ -529,6 +529,49 @@ function reloadForm() {
     
 }
 
+function footerPlayerCard(obj) {
+    let container = document.createElement('div');
+    container.classList.add('footerWrapper');
+   
+
+    container.dataset.playerName = obj.name;
+   
+    container.innerHTML = `
+        <div class="cardContent">
+            <div class="h-[10%]"></div>
+            <div class="topContent w-full h-fit flex">
+                <div class="w-1/4 flex flex-col flexGapStat justify-center content-center">
+                    <div class="flex justify-center h-fit ratingText mbFlag">${obj.rating}</div>
+                    <div class="flex justify-center h-fit textSIZE mbFlag">ST</div>
+                    <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.flag}" alt="Portugal" draggable="false"></div>
+                    <div class="flex justify-center w-full"><img class="w-3/6" src="${obj.logo}" alt="Al Nassr" draggable="false"></div>
+                </div>
+                <div class="w-3/4 flex">
+                    <img class="playerPhoto m-auto" src="${obj.photo}" alt="Cristiano Ronaldo" draggable="false">
+                </div>
+            </div>
+            <div class="footerPlayerName w-full h-fit nameSIZE flex justify-center items-center text-[#FFD700]">${obj.name}</div>
+            <hr class="m-auto w-4/5 border-none" id="firstHR">
+            <div class="bottomContent w-3/4 m-auto flex justify-evenly">
+                <div>
+                    <div class="stat flex justify-center"><span class="footerTextStat">${obj.pace}PAC</span></div>
+                    <div class="stat flex justify-center"><span class="footerTextStat">${obj.shooting}SHO</span></div>
+                    <div class="stat flex justify-center"><span class="footerTextStat">${obj.passing}PAS</span></div>
+                </div>
+                <hr class="mt-1 h-6 w-[1px] bg-[#3D341B] border-none">
+                <div>
+                    <div class="stat flex justify-center"><span class="footerTextStat">${obj.dribbling}DRI</span></div>
+                    <div class="stat flex justify-center"><span class="footerTextStat">${obj.defending}DEF</span></div>
+                    <div class="stat flex justify-center"><span class="footerTextStat">${obj.physical}PHY</span></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+  
+
+    return container;
+}
 
 
 
@@ -537,25 +580,23 @@ let footer=document.getElementById('footerDiv');
 function displayPlayersInFooter(players) {
     footer.innerHTML='';
     players.forEach(player => {
-        // Skip if the player's name exists in the teamSquad array
-
+      
         if (teamSquad.includes(player.name)) {
-            console.log(`Skipping player: ${player.name}`);
+           
             return;
         }
         
 
-        // Create a player card and append it to the footer
-        let card = playerCard(player);
+       
+        let card = footerPlayerCard(player);
         
-        card.style.width = '100px';
+        // card.style.width = '120px';
         footer.appendChild(card);
     });
 }
-setEvent();
-// displayPlayersInFooter(playersData);
+
 window.onload = () => {
-    
+    setEvent();
     reloadForm();
     changeLayout(teamSquad[0]);
     displayPlayersInFooter(playersData);
