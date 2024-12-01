@@ -673,6 +673,7 @@ function displayPlayersInFooter(players) {
 // set event , realod formation , display footer players on each reload
 
 window.onload = () => {
+    document.getElementById('formation').value=teamSquad[0];
     setEvent();
     reloadForm();
     changeLayout(teamSquad[0]);
