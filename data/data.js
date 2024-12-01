@@ -326,7 +326,7 @@ export const players =  [
       nationality: "England",
       flag: "https://cdn.sofifa.net/flags/gb-eng.png",
       logo: "https://cdn.sofifa.net/meta/team/14/120.png",
-      club: "Liverpool",
+      club: "Manchester United",
       rating: 87,
       pace: 76,
       shooting: 66,

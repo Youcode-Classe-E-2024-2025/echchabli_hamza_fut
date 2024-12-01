@@ -60,32 +60,24 @@ document.getElementById('formation').addEventListener('change', function () {
 
         // return full card 
 
-        function playerCard( obj ) {
+        function playerCard( obj,x ,c) {
 
-            let container = document.createElement('div');
-            container.classList.add('wrapper');
-            let NtextSize =9; 
-            let mtext=0;
-            // console.log('fix size');
             
-            if (obj.name.length>=12 && obj.name.length<18) {
+            let container = document.createElement('div');
+            container.classList.add('wrapper' );
+            
+            let cmi=''
+            if (x==0) {
+            cmi=`<div id="chimi" class="w-[15px] h-[15px] bg-red-500 rounded-full absolute left-[1px] top-[1px] text-black text-xs font-semibold text-center">${c}</div>`;
 
-                // console.log('name' ,obj.name.length);
-                mtext=2;
-                NtextSize=8;
-
-            }else if(obj.name.length>=18){
-
-                // console.log('name' , obj.name.length);
-                mtext=2;
-                NtextSize=6;
-            } 
-
+                
+            }
            container.dataset.playerName = obj.name ;
            container.dataset.test = 'not' ;
             container.innerHTML=`
              <div class="cardContent">
-                <div class="h-[10%]"></div>
+              ${cmi}
+                   <div class="h-[10%]"></div>
                 <div class="topContent w-full h-fit flex">
                     <div class="w-1/4 flex flex-col flexGapStat justify-center  content-center">
                         <div class="flex justify-center h-fit ratingText mbFlag">${obj.rating}</div>
@@ -150,19 +142,55 @@ function rightSidePlayers() {
     let liste = playersData;
     document.getElementById('rightPlayersDisplay').innerHTML='';
     // console.log(Pposition);
-    
-    let filteredRes=liste.filter(item => item.position == Pposition);
-    let res = filteredRes.filter(obj => !teamSquad.includes(obj.name)); 
+    // console.log('st');
+    // let filteredRes=liste.filter(item => item.position == Pposition);
+    let res = liste.filter(obj => !teamSquad.includes(obj.name)); 
     
     res.forEach(element => {
-        let retunedDiv = playerCard(element);
+        let retunedDiv = playerCard(element ,1 ,0);
         retunedDiv.classList.add('cursor-pointer');
         retunedDiv.style.height="fit-content";
         
 
           
         retunedDiv.addEventListener('click', function () {
+            
+            
            
+        let cimi=0;
+        if (Pposition==element.position) {
+            
+            cimi+=10;
+            
+            
+        } 
+
+            teamSquad.map(playerNam => {
+               
+                
+              let x=playersData.find(item=>item.name==playerNam);
+              if (!x) {
+
+                 return
+              }
+              if (x.nationality==element.nationality) {
+                cimi++;
+              } 
+              if (x.club==element.club) {
+                cimi+=3;
+              } 
+
+            });
+
+
+
+
+
+
+
+
+
+
            
           
             teamSquad[cardNum]=element.name;
@@ -170,7 +198,9 @@ function rightSidePlayers() {
 
             // console.log(JSON.parse(localStorage.getItem('current11')));
                let x=selectedCard.parentNode;
-               let newCard= playerCard(element) ;
+              
+               
+               let newCard= playerCard(element , 0 ,cimi) ;
                newCard.role=Pposition;
                newCard.setAttribute('data-card-number', cardNum);
                
@@ -181,6 +211,7 @@ function rightSidePlayers() {
             document.getElementById('rightPlayers').classList.add('hidden');
 
             displayPlayersInFooter(playersData);
+            reloadForm();
         });
 
         document.getElementById('rightPlayersDisplay').appendChild(retunedDiv);
@@ -235,6 +266,7 @@ document.getElementById('removePlayer').addEventListener('click' , ()=>{
     
     displayPlayersInFooter(playersData);
     rightSidePlayers();
+    reloadForm();
 
 }
 
@@ -356,7 +388,7 @@ function fillDeleteContainer() {
     con.innerHTML='';
     playersData.forEach(element => {
 
-        let retunedDiv = playerCard(element);
+        let retunedDiv = playerCard(element ,1 ,0);
         retunedDiv.classList.add('cursor-pointer');
 
         retunedDiv.addEventListener('click' , function () {
@@ -401,7 +433,7 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
     document.getElementById('sidePlayersContainer').innerHTML='';
     playersData.forEach(element => {
 
-        let retunedDiv = playerCard(element);
+        let retunedDiv = playerCard(element ,1,0);
         retunedDiv.onclick=function() {
             document.getElementById('updatePlayerContainer').classList.remove('hidden');
             target= element.name; 
@@ -569,31 +601,68 @@ function reloadForm() {
     
      teamSquad;
     teamSquad.forEach((playerName, index) => {
-        // Find the card by its data-card-number attribute
-        let selectedCard = document.querySelector(`[data-card-number="${index + 0}"]`);
-        // console.log(playerName , index);
+        // console.log('relod');
+        let selectedCard = document.querySelector(`[data-card-number="${index}"]`);
+        console.log(selectedCard);
         
-        if (!selectedCard) return; // Skip if no card exists for this number
+        if (!selectedCard) return; 
     
         if (playerName === null) {
-            // Clear the card for empty slots
+             console.log('same');
             selectedCard.innerHTML = `<div class="cardContent flex justify-center items-center text-xl text-white cursor-pointer">+${selectedCard.getAttribute('role')}</div>`;
             selectedCard.removeAttribute('data-player-name');
         } else {
-            // Find the player object in playersData
-            let element = playersData.find(player => player.name === playerName);
-            // console.log(element);
             
-            if (element) {
-                // Update the card with player data
-                selectedCard.classList.remove('flex');
-                selectedCard.classList.remove('basis-[15%]');
-                // selectedCard.classList.add('basis-[10%]');
+            let element = playersData.find(player => player.name === playerName);
+            //  console.log(selectedCard.getAttribute('role'));
+            //  console.log(element.position);
+           
+            
+             
+            let cimisti=0;
+            if (selectedCard.getAttribute('role')==element.position) {
+               
+                cimisti+=10;
+            } 
+                 
+                 
+                teamSquad.map(playerNam => {
+                    
+                    
+                  let x=playersData.find(item=>item.name==playerNam);
+                   if (!x) {
+                    return;
+                   }
+
+                  if ( x.name==element.name) {
+                         console.log(element);
+                       return;
+               
+                    
+                  }
+                  
+                 
+                  if (x.nationality==element.nationality) {
+                    cimisti++;
+                  
+                  } 
+                  if (x.club==element.club) {
+                    cimisti+=3;
+                  } 
+    
+                });
+             
+              
+            
+           
                 selectedCard.dataset.playerName = element.name;
+                
+             
+             console.log(cimisti);
+             
               
-              
-                selectedCard.innerHTML =playerCard(element).innerHTML;
-            }
+                selectedCard.innerHTML =playerCard(element ,0 ,cimisti).innerHTML
+
         }
     });
     displayPlayersInFooter(playersData);
