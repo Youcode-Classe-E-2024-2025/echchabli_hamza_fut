@@ -5,7 +5,7 @@ import { players } from "../data/data.js";
 let playersData = JSON.parse(localStorage.getItem('playersLISTE')) || players ;
 
 let teamSquad= JSON.parse(localStorage.getItem('current11')) || ['433' , null ,null ,null ,null ,null ,null ,null ,null ,null ,null,null];
-console.log('fromStorage' , teamSquad);
+
 
 let value;
 
@@ -14,7 +14,7 @@ document.getElementById('formation').addEventListener('change', function () {
      value = this.value;
     teamSquad[0]=value;
     localStorage.setItem('current11', JSON.stringify(teamSquad));
-    console.log(JSON.parse(localStorage.getItem('current11')));
+   
     
 
     if (value) {
@@ -35,7 +35,7 @@ document.getElementById('formation').addEventListener('change', function () {
             const attackDivs = Array.from(document.getElementById('attack').children); 
             const middleDivs = Array.from(document.getElementById('middle').children); 
             const defenceDivs = Array.from(document.getElementById('defence').children);  
-            console.log();
+            
             
            
             const allDivs = [...defenceDivs, ...middleDivs, ...attackDivs];
@@ -149,7 +149,7 @@ function setEvent() {
 function rightSidePlayers() {
     let liste = playersData;
     document.getElementById('rightPlayersDisplay').innerHTML='';
-    console.log(Pposition);
+    // console.log(Pposition);
     
     let filteredRes=liste.filter(item => item.position == Pposition);
     let res = filteredRes.filter(obj => !teamSquad.includes(obj.name)); 
@@ -168,7 +168,7 @@ function rightSidePlayers() {
             teamSquad[cardNum]=element.name;
             localStorage.setItem('current11', JSON.stringify(teamSquad));
 
-            console.log(JSON.parse(localStorage.getItem('current11')));
+            // console.log(JSON.parse(localStorage.getItem('current11')));
                let x=selectedCard.parentNode;
                let newCard= playerCard(element) ;
                newCard.role=Pposition;
@@ -425,7 +425,7 @@ document.getElementById('allBtn').addEventListener('click' , ()=>{
 function fillForm(name) {
    
     let obj = playersData.find(item => item.name === name);
-    console.log('fill' , obj);
+    // console.log('fill' , obj);
     
 
     if (obj) {
@@ -444,7 +444,7 @@ function fillForm(name) {
         document.getElementById('playerDefending').value = obj.defending || '';
         document.getElementById('playerPhysical').value = obj.physical || '';
 
-        console.log('Form filled with data:', obj);
+        // console.log('Form filled with data:', obj);
     }else{
         console.error('Player not found:', name);
     }
@@ -545,7 +545,7 @@ document.getElementById('updatePlayerForm').addEventListener('submit', function 
     });
 
     localStorage.setItem('playersLISTE', JSON.stringify(playersData));
-    console.log('Updated Local Storage:', JSON.parse(localStorage.getItem('playersLISTE')));
+    // console.log('Updated Local Storage:', JSON.parse(localStorage.getItem('playersLISTE')));
 
     fillDeleteContainer();
    displayPlayersInFooter(playersData);
@@ -571,7 +571,7 @@ function reloadForm() {
     teamSquad.forEach((playerName, index) => {
         // Find the card by its data-card-number attribute
         let selectedCard = document.querySelector(`[data-card-number="${index + 0}"]`);
-        console.log(playerName , index);
+        // console.log(playerName , index);
         
         if (!selectedCard) return; // Skip if no card exists for this number
     
@@ -582,7 +582,7 @@ function reloadForm() {
         } else {
             // Find the player object in playersData
             let element = playersData.find(player => player.name === playerName);
-            console.log(element);
+            // console.log(element);
             
             if (element) {
                 // Update the card with player data
